@@ -188,11 +188,11 @@ public class DemineurIHM extends Application {
                 .add(new Image(this.getClass().getResourceAsStream("/ressources/images/logoWhite.png")));
         primaryStage.setScene(scene);
 
-        primaryStage.show();
         root.requestFocus();
 
         primaryStage.setOnCloseRequest(e -> ctrl.quitCall());
         ctrl.initialize(this);
+        primaryStage.show();
     }
 
     private void contextMenuCreator(Scene scene,Stage primaryStage) {
