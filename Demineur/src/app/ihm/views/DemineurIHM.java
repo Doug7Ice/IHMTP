@@ -35,7 +35,7 @@ public class DemineurIHM extends Application {
     private BorderPane root = new BorderPane();
     private Label lblTitle = new Label("~ MineHunt ~");
     private Label lblNbErrors = new Label("Nb Errors : ");
-    private Label lblNbClicks = new Label("Nb Clickssssss : ");
+    private Label lblNbClicks = new Label("Nb Clicks : ");
     private VBox vboxCenter = new VBox();
     private HBox hboxHaut = new HBox();
     private VBox vboxTopMenuLabel = new VBox();
