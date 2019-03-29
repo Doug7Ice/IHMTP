@@ -34,8 +34,8 @@ public class DemineurIHM extends Application {
     //Composants jeu
     private BorderPane root = new BorderPane();
     private Label lblTitle = new Label("~ MineHunt ~");
-    private Label lblNbErrors = new Label("Nb Errorsssss : ");
-    private Label lblNbClicks = new Label("Nb Clicks : ");
+    private Label lblNbErrors = new Label("Nb Errors : ");
+    private Label lblNbClicks = new Label("Nb Clickssssss : ");
     private VBox vboxCenter = new VBox();
     private HBox hboxHaut = new HBox();
     private VBox vboxTopMenuLabel = new VBox();
