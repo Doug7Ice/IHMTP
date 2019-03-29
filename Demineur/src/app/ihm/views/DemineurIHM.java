@@ -193,7 +193,7 @@ public class DemineurIHM extends Application {
         primaryStage.setOnCloseRequest(e -> ctrl.quitCall());
         ctrl.initialize(this);
         primaryStage.show();
-        System.out.println("GOOOOOOOOOOOOOOO");
+        System.out.println("GO");
     }
 
     private void contextMenuCreator(Scene scene,Stage primaryStage) {
