@@ -7,9 +7,7 @@ import app.helpers.ViewLib;
 import app.ihm.views.DemineurIHM;
 import app.workers.IMineHuntModel;
 import app.workers.Worker;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -268,10 +266,15 @@ public class Controller {
             wrk.setFlagState(x, y, false);
         } else {
             if (selectedCase.getValue() == Choices.MINE_ && !selectedCase.isOpen()) {
+                if (wrk.getNbClicks() == 0) {
+                    startGame();
+                    return;
+                }
                 wrk.addClick();
                 wrk.open(x, y);
                 setButtonBackgroundMine(btn);
                 ihm.setTxtNbErrors(wrk.errors() + "");
+
             } else if (selectedCase.getValue() == Choices.BLANK && !selectedCase.isOpen()) {
                 wrk.addClick();
                 showAllZero(x, y);
@@ -279,10 +282,9 @@ public class Controller {
             //Win Check
             if (wrk.isGameOver()) {
                 if (wrk.errors() > 0)
-                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait " + wrk.errors() + " erreur(s) et jouer pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.WARNING);
+                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait " + wrk.errors() + " erreur(s) et joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.WARNING);
                 else
                     ViewLib.displayPopup("Fin du jeu !", "Vos avez fait aucune erreur !!! Vous avez joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.INFORMATION);
-                System.out.println("Game is over !");
             }
         }
         ihm.setTxtNbClicks(wrk.getNbClicks() + "");

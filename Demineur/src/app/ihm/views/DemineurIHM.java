@@ -344,6 +344,7 @@ public class DemineurIHM extends Application {
     }
 
     public void setTxtNbErrors(String txt) {
+        new Vibrate(root, Orientation.HORIZONTAL).play();
         txtNbErrors.setText(txt);
 
     }
