@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="logging test2">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Adding minimum size to windows and set resizable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,8 +65,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="333" column="28" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
+            <state relative-caret-position="765">
+              <caret line="177" column="22" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/ihm/controllers/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2618">
+              <caret line="186" column="20" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+            <state relative-caret-position="391">
+              <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,6 +179,21 @@
               <item name="Demineur" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demineur" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="ihm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demineur" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="ihm" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -328,7 +354,7 @@
       <workItem from="1553871043324" duration="1760000" />
       <workItem from="1553875320048" duration="16000" />
       <workItem from="1554099667449" duration="274000" />
-      <workItem from="1554102723288" duration="206000" />
+      <workItem from="1554102723288" duration="1156000" />
     </task>
     <task id="LOCAL-00001" summary="lol test">
       <created>1553871226178</created>
@@ -372,11 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553872732415</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adding minimum size to windows and set resizable">
+      <created>1554103004296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1554103004296</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8231000" />
+    <option name="totallyTimeSpent" value="9181000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -389,7 +422,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2728647" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -483,7 +515,8 @@
     <MESSAGE value="show stage at the end" />
     <MESSAGE value="logging test" />
     <MESSAGE value="logging test2" />
-    <option name="LAST_COMMIT_MESSAGE" value="logging test2" />
+    <MESSAGE value="Adding minimum size to windows and set resizable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding minimum size to windows and set resizable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -668,16 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/ihm/controllers/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1598">
-          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/workers/Worker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="626">
@@ -690,20 +713,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
+    <entry file="file://$PROJECT_DIR$/src/app/ihm/controllers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="333" column="28" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
+        <state relative-caret-position="2618">
+          <caret line="186" column="20" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+        <state relative-caret-position="391">
+          <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="177" column="22" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
         </state>
       </provider>
     </entry>
