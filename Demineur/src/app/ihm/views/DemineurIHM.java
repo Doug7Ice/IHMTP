@@ -332,12 +332,15 @@ public class DemineurIHM extends Application {
         if (primaryStage != null && getNumberCasesX() > 4){
             primaryStage.setWidth(500);
             primaryStage.setHeight(75 * getNumberCasesX());
+<<<<<<< HEAD
         }
         else {
             primaryStage.setWidth(500);
             primaryStage.setHeight(85 * 5);
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(85 * 5);
+=======
+>>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
         }
     }
 
