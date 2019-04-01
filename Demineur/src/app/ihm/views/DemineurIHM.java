@@ -79,7 +79,7 @@ public class DemineurIHM extends Application {
     public void start(Stage stage) {
         this.primaryStage = stage;
 
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         ctrl = new Controller();
         buttonShMines.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
             ctrl.btnShowMinesHit();
@@ -332,6 +332,8 @@ public class DemineurIHM extends Application {
         if (primaryStage != null){
             primaryStage.setWidth(500);
             primaryStage.setHeight(75 * getNumberCasesX());
+            primaryStage.setMinWidth(500);
+            primaryStage.setMinHeight(75 * getNumberCasesX());
         }
     }
 
