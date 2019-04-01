@@ -7,17 +7,21 @@ import app.helpers.ViewLib;
 import app.ihm.views.DemineurIHM;
 import app.workers.IMineHuntModel;
 import app.workers.Worker;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.WindowEvent;
 
 /**
  * This class is the controller of this game. It interact with the view and the worker
@@ -184,10 +188,11 @@ public class Controller {
     /**
      * This method is called when the game is quit.
      */
-    public void quitCall() {
-        ViewLib.displayPopup("Fermer l'application", "L'application va se fermer", "", Alert.AlertType.INFORMATION);
-        //Exit program with no errors
-        System.exit(0);
+    public void quitCall(WindowEvent e) {
+        Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
+        if (popup.showAndWait().get() != ButtonType.OK) {
+            e.consume();
+        }
     }
 
     /**
@@ -274,9 +279,9 @@ public class Controller {
             //Win Check
             if (wrk.isGameOver()) {
                 if (wrk.errors() > 0)
-                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait " + wrk.errors() + " erreur(s) et jouer pendant "+ DateTimeLib.chronoStringElapsedTime()+" secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.WARNING);
+                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait " + wrk.errors() + " erreur(s) et jouer pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.WARNING);
                 else
-                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait aucune erreur !!! Vous avez joué pendant "+ DateTimeLib.chronoStringElapsedTime()+" secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.INFORMATION);
+                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait aucune erreur !!! Vous avez joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.INFORMATION);
                 System.out.println("Game is over !");
             }
         }
