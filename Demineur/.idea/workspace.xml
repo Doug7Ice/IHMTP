@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Adding minimum size to windows and set resizable">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IhmModel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Demineur.iml" afterDir="false" />
-=======
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="logging test2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
->>>>>>> parent of 496307f... gitignore update
-=======
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="logging test">
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="logging test">
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
       <change beforePath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -81,35 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <state relative-caret-position="173">
-              <caret line="337" column="14" selection-start-line="337" selection-start-column="14" selection-end-line="337" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/ihm/controllers/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2618">
-              <caret line="186" column="20" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-=======
             <state relative-caret-position="367">
               <caret line="333" column="28" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
->>>>>>> parent of 496307f... gitignore update
-=======
-            <state relative-caret-position="306">
-              <caret line="195" column="30" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
-            <state relative-caret-position="306">
-              <caret line="195" column="30" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
             </state>
           </provider>
         </entry>
@@ -117,21 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <state relative-caret-position="527">
-              <caret line="36" column="54" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
-=======
             <state relative-caret-position="289">
-=======
-            <state relative-caret-position="374">
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
-            <state relative-caret-position="374">
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
               <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
->>>>>>> parent of 496307f... gitignore update
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -205,6 +150,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -223,29 +169,10 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
-<<<<<<< HEAD
-            <path>
-              <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demineur" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="ihm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demineur" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="ihm" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-=======
->>>>>>> parent of 496307f... gitignore update
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -264,7 +191,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -309,7 +236,7 @@
     </configuration>
     <configuration name="DemineurIHM" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.ihm.views.DemineurIHM" />
-      <module name="Demineur" />
+      <module name="IhmModel" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -323,7 +250,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
-      <module name="Demineur" />
+      <module name="IhmModel" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -348,53 +275,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="Demineur" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="Demineur" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -445,22 +325,10 @@
       <workItem from="1553868240708" duration="132000" />
       <workItem from="1553868631979" duration="779000" />
       <workItem from="1553869760701" duration="358000" />
-<<<<<<< HEAD
-<<<<<<< HEAD
       <workItem from="1553871043324" duration="1760000" />
       <workItem from="1553875320048" duration="16000" />
       <workItem from="1554099667449" duration="274000" />
-<<<<<<< HEAD
-      <workItem from="1554102723288" duration="2104000" />
-=======
       <workItem from="1554102723288" duration="206000" />
->>>>>>> parent of 496307f... gitignore update
-=======
-      <workItem from="1553871043324" duration="1673000" />
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
-      <workItem from="1553871043324" duration="1673000" />
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
     </task>
     <task id="LOCAL-00001" summary="lol test">
       <created>1553871226178</created>
@@ -497,23 +365,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553872589783</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="logging test2">
+      <created>1553872732415</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1553872732415</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="10129000" />
-=======
     <option name="totallyTimeSpent" value="8231000" />
->>>>>>> parent of 496307f... gitignore update
-=======
-    <option name="totallyTimeSpent" value="7648000" />
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
-    <option name="totallyTimeSpent" value="7648000" />
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -528,7 +391,7 @@
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.26152682" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2728647" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -593,6 +456,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -605,7 +482,8 @@
     <MESSAGE value="TEST FINAL GIT" />
     <MESSAGE value="show stage at the end" />
     <MESSAGE value="logging test" />
-    <option name="LAST_COMMIT_MESSAGE" value="logging test" />
+    <MESSAGE value="logging test2" />
+    <option name="LAST_COMMIT_MESSAGE" value="logging test2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -617,12 +495,6 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java</url>
-          <line>331</line>
-          <properties />
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -818,75 +690,22 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="36" column="54" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-=======
     <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="333" column="28" selection-start-line="333" selection-start-column="28" selection-end-line="333" selection-end-column="28" />
->>>>>>> parent of 496307f... gitignore update
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/ihm/controllers/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="2618">
-          <caret line="186" column="20" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="24" />
-=======
         <state relative-caret-position="289">
-=======
-    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
-    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
           <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
->>>>>>> parent of 496307f... gitignore update
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="337" column="14" selection-start-line="337" selection-start-column="14" selection-end-line="337" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> parent of 496307f... gitignore update
-=======
-=======
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-    <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="195" column="30" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
-=======
->>>>>>> parent of 160353f... Adding minimum size to windows and set resizable
   </component>
 </project>
