@@ -3,7 +3,7 @@ package app.helpers;
 import javafx.scene.control.Alert;
 
 /**
- * @author P-A Mettraux
+ * @author Anthony Alonso Lopez
  */
 public class ViewLib {
 

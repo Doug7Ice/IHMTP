@@ -9,7 +9,7 @@ public class Vibrate extends BasicAnimation {
 
     private int steps = 20;
     private double maxDelta = 3;
-    private Orientation orientation = null;
+    private Orientation orientation;
 
     public Vibrate(Node target) {
         this(target, null);

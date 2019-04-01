@@ -7,7 +7,6 @@ import app.helpers.ViewLib;
 import app.ihm.views.DemineurIHM;
 import app.workers.IMineHuntModel;
 import app.workers.Worker;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -28,7 +27,7 @@ import javafx.stage.WindowEvent;
  * @version 1.0.0 First publish
  */
 public class Controller {
-    boolean isShowAllMineToggle;
+    private boolean isShowAllMineToggle;
     private IMineHuntModel wrk;
     private DemineurIHM ihm;
     private int gridGameSizeX = 10;
@@ -52,19 +51,9 @@ public class Controller {
     }
 
     /**
-     * This method is call when the user want to start a new game.
-     *
-     * @param actionEvent not used
-     */
-    private void btnNewGameHit(ActionEvent actionEvent) {
-        startGame();
-    }
-
-    /**
      * This method init the game.
      */
     private void startGame() {
-
         isShowAllMineToggle = false;
         //Clear the Vbox from the gridgame
         ihm.clearGameGrid();
@@ -77,14 +66,6 @@ public class Controller {
         //create grid and display it
         createGameGrid();
         DateTimeLib.chronoReset();
-    }
-
-    /**
-     * This method clear the Vbox from gridGame. This method need to be call when you want to clear the board.
-     */
-    private void clearGameGrid() {
-        if (gridGame.getChildren().size() > 1)
-            gridGame.getChildren().remove(1);
     }
 
     /**
@@ -202,8 +183,10 @@ public class Controller {
             for (int j = 0; j < theGame[i].length; j++) {
                 if (theGame[i][j].getValue() == Choices.MINE_ && !theGame[i][j].isOpen() && !theGame[i][j].isFlag()) {
                     Button selected = getNodeFromGridPane(i, j);
-                    if (isShowAllMineToggle) setButtonBackgroundDefault(selected);
-                    else setButtonBackgroundShowMine(selected);
+                    if (selected != null) {
+                        if (isShowAllMineToggle) setButtonBackgroundDefault(selected);
+                        else setButtonBackgroundShowMine(selected);
+                    }
                 }
             }
         }
@@ -226,10 +209,6 @@ public class Controller {
         return null;
     }
 
-    /**
-     * @param event
-     * @param btn
-     */
     private void gameButtonEventListener(MouseEvent event, Button btn) {
         if (!wrk.isGameOver()) {
             if (event.getButton() == MouseButton.SECONDARY) {
@@ -311,7 +290,7 @@ public class Controller {
     }
 
 
-    public int getGridGameSizeX() {
+    private int getGridGameSizeX() {
         return gridGameSizeX;
     }
 
@@ -319,7 +298,7 @@ public class Controller {
         this.gridGameSizeX = gridGameSizeX;
     }
 
-    public int getGridGameSizeY() {
+    private int getGridGameSizeY() {
         return gridGameSizeY;
     }
 
@@ -327,9 +306,6 @@ public class Controller {
         this.gridGameSizeY = gridGameSizeY;
     }
 
-    public int getMineQuantity() {
-        return mineQuantity;
-    }
 
     public void setMineQuantity(int mineQuantity) {
         this.mineQuantity = mineQuantity;
