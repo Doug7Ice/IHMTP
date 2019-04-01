@@ -167,7 +167,7 @@ public class DemineurIHM extends Application {
 
         root.setBottom(hboxBas);
 
-        Scene scene = new Scene(root, 50 * getNumberCasesY(), 75 * getNumberCasesX());
+        Scene scene = new Scene(root, 500, 75 * getNumberCasesX());
         primaryStage.sizeToScene();
 
         contextMenuCreator(scene, primaryStage);
