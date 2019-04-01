@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="C'est bon j'arrete">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Please work...." />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -352,7 +349,7 @@
       <workItem from="1554102723288" duration="206000" />
       <workItem from="1554105626683" duration="89000" />
       <workItem from="1554105853715" duration="292000" />
-      <workItem from="1554106399181" duration="256000" />
+      <workItem from="1554106399181" duration="548000" />
     </task>
     <task id="LOCAL-00001" summary="lol test">
       <created>1553871226178</created>
@@ -403,11 +400,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554105670952</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Please work....">
+      <created>1554106691126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1554106691126</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8868000" />
+    <option name="totallyTimeSpent" value="9160000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -514,7 +518,8 @@
     <MESSAGE value="logging test" />
     <MESSAGE value="logging test2" />
     <MESSAGE value="C'est bon j'arrete" />
-    <option name="LAST_COMMIT_MESSAGE" value="C'est bon j'arrete" />
+    <MESSAGE value="Please work...." />
+    <option name="LAST_COMMIT_MESSAGE" value="Please work...." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
