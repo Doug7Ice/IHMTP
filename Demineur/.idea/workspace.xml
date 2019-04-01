@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Adding minimum size to windows and set resizable">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IhmModel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Demineur.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="177" column="22" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
+            <state relative-caret-position="173">
+              <caret line="337" column="14" selection-start-line="337" selection-start-column="14" selection-end-line="337" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -86,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
+            <state relative-caret-position="527">
+              <caret line="36" column="54" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -193,7 +196,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="ihm" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -262,7 +265,7 @@
     </configuration>
     <configuration name="DemineurIHM" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.ihm.views.DemineurIHM" />
-      <module name="IhmModel" />
+      <module name="Demineur" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -276,7 +279,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
-      <module name="IhmModel" />
+      <module name="Demineur" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -301,6 +304,53 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="Demineur" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="Demineur" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -354,7 +404,7 @@
       <workItem from="1553871043324" duration="1760000" />
       <workItem from="1553875320048" duration="16000" />
       <workItem from="1554099667449" duration="274000" />
-      <workItem from="1554102723288" duration="1156000" />
+      <workItem from="1554102723288" duration="2104000" />
     </task>
     <task id="LOCAL-00001" summary="lol test">
       <created>1553871226178</created>
@@ -409,7 +459,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9181000" />
+    <option name="totallyTimeSpent" value="10129000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -422,6 +472,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2728647" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -713,6 +764,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="36" column="54" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/ihm/controllers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2618">
@@ -723,20 +784,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="177" column="22" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
+        <state relative-caret-position="173">
+          <caret line="337" column="14" selection-start-line="337" selection-start-column="14" selection-end-line="337" selection-end-column="14" />
         </state>
       </provider>
     </entry>

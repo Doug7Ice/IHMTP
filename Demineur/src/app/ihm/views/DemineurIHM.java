@@ -329,11 +329,17 @@ public class DemineurIHM extends Application {
     }
 
     public void changeSizeWindows(){
-        if (primaryStage != null){
+        if (primaryStage != null && getNumberCasesX() > 4){
             primaryStage.setWidth(500);
             primaryStage.setHeight(75 * getNumberCasesX());
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(75 * getNumberCasesX());
+        }
+        else {
+            primaryStage.setWidth(500);
+            primaryStage.setHeight(85 * 5);
+            primaryStage.setMinWidth(500);
+            primaryStage.setMinHeight(85 * 5);
         }
     }
 
