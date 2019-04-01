@@ -190,7 +190,7 @@ public class DemineurIHM extends Application {
 
         root.requestFocus();
 
-        primaryStage.setOnCloseRequest(e -> ctrl.quitCall());
+        primaryStage.setOnCloseRequest(e -> ctrl.quitCall(e));
         ctrl.initialize(this);
         primaryStage.show();
         System.out.println("GO");
