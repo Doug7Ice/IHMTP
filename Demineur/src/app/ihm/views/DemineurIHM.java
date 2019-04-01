@@ -87,6 +87,8 @@ public class DemineurIHM extends Application {
         buttonNewGames.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
             ctrl.initialize(this);
         });
+        txtNbClicks.setEditable(false);
+        txtNbErrors.setEditable(false);
         hboxErrors.getChildren().addAll(lblNbErrors, txtNbErrors);
         hboxClicks.getChildren().addAll(lblNbClicks, txtNbClicks);
         hboxHaut.getChildren().addAll(hboxErrors, hboxClicks);
