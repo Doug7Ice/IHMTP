@@ -1,5 +1,6 @@
 package app.ihm.views;
 
+import app.helpers.SystemLib;
 import app.helpers.Vibrate;
 import app.helpers.ViewLib;
 import app.ihm.controllers.Controller;
@@ -55,9 +56,9 @@ public class DemineurIHM extends Application {
     private MenuItem menuCopyright = new MenuItem("Copyright");
 
     //Menu Radio
-    ToggleGroup toggleGroupLook = new ToggleGroup();
-    RadioMenuItem menuRadioCaspianTheme = new RadioMenuItem("Caspian");
-    RadioMenuItem menuRadioModenaTheme = new RadioMenuItem("Modena");
+    private ToggleGroup toggleGroupLook = new ToggleGroup();
+    private RadioMenuItem menuRadioCaspianTheme = new RadioMenuItem("Caspian");
+    private RadioMenuItem menuRadioModenaTheme = new RadioMenuItem("Modena");
 
     //Popup settings du jeu (menus)
     private TextField txtNbMine = new TextField("10");
@@ -81,12 +82,8 @@ public class DemineurIHM extends Application {
 
         primaryStage.setResizable(true);
         ctrl = new Controller();
-        buttonShMines.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
-            ctrl.btnShowMinesHit();
-        });
-        buttonNewGames.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> {
-            ctrl.initialize(this);
-        });
+        buttonShMines.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> ctrl.btnShowMinesHit());
+        buttonNewGames.addEventHandler(ActionEvent.ACTION, (ActionEvent event) -> ctrl.initialize(this));
         txtNbClicks.setEditable(false);
         txtNbErrors.setEditable(false);
         hboxErrors.getChildren().addAll(lblNbErrors, txtNbErrors);
@@ -115,7 +112,8 @@ public class DemineurIHM extends Application {
         //Menu add RadioMenu for the look
         menuRadioCaspianTheme.setSelected(false);
         menuRadioCaspianTheme.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
+            @Override
+            public void handle(ActionEvent e) {
                 System.out.println("Caspian");
                 setUserAgentStylesheet(STYLESHEET_CASPIAN);
             }
@@ -123,14 +121,9 @@ public class DemineurIHM extends Application {
         menuRadioCaspianTheme.setToggleGroup(toggleGroupLook);
 
         menuRadioModenaTheme.setSelected(true);
-        menuRadioModenaTheme.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                System.out.println("Modena");
-                setUserAgentStylesheet(STYLESHEET_MODENA);
-            }
-        });
+        menuRadioModenaTheme.setOnAction((ActionEvent e) -> setUserAgentStylesheet(STYLESHEET_MODENA));
         menuRadioModenaTheme.setToggleGroup(toggleGroupLook);
-        menuTheme.getItems().addAll(menuRadioModenaTheme,menuRadioCaspianTheme);
+        menuTheme.getItems().addAll(menuRadioModenaTheme, menuRadioCaspianTheme);
 
         //MenuTaille add Slider
         Slider slrSpeed = new Slider(0, 100, 30);
@@ -155,13 +148,8 @@ public class DemineurIHM extends Application {
         menuBar.getMenus().addAll(menuJeux, menuLook, menuAbout);
 
         //Add Listener to Menus
-        menuCopyright.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                affichePopupMsg("Copyright", "Ce jeu à été développé par Anthony Alonso et Léo Doug Rey, 03.2019");
-            }
-        });
-
+        menuCopyright.addEventHandler(ActionEvent.ACTION, (ActionEvent event) ->
+                ViewLib.displayPopup("Copyright", null, "Ce jeu à été développé par Anthony Alonso et Léo Doug Rey, 03.2019", Alert.AlertType.INFORMATION));
         menuPref.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -182,7 +170,7 @@ public class DemineurIHM extends Application {
         Scene scene = new Scene(root, 50 * getNumberCasesY(), 75 * getNumberCasesX());
         primaryStage.sizeToScene();
 
-        contextMenuCreator(scene,primaryStage);
+        contextMenuCreator(scene, primaryStage);
 
         primaryStage.setTitle(
                 "MineHunt");
@@ -198,41 +186,33 @@ public class DemineurIHM extends Application {
         System.out.println("GO");
     }
 
-    private void contextMenuCreator(Scene scene,Stage primaryStage) {
+    private void contextMenuCreator(Scene scene, Stage primaryStage) {
         //ContextMenu for ColorPicker
         final ColorPicker colorssPicker = new ColorPicker();
         colorssPicker.setStyle("-fx-background-color: white;");
 
         final MenuItem otherItem = new MenuItem(null, new Label("Background Color"));
 
-        final MenuItem resizeItem = new MenuItem(null,colorssPicker);
-        resizeItem.setOnAction(new EventHandler<ActionEvent>(){
+        final MenuItem resizeItem = new MenuItem(null, colorssPicker);
+        resizeItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
-                root.setBackground(new Background(new BackgroundFill(colorssPicker.getValue(),null,null)));
+            public void handle(ActionEvent event) {
+                root.setBackground(new Background(new BackgroundFill(colorssPicker.getValue(), null, null)));
             }
         });
 
-        final ContextMenu ctxmenu = new ContextMenu(otherItem,resizeItem);
+        final ContextMenu ctxmenu = new ContextMenu(otherItem, resizeItem);
 
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event){
-                if (MouseButton.SECONDARY.equals(event.getButton())){
-                    ctxmenu.show(primaryStage, event.getScreenX(), event.getScreenY());
-                }
-            }
+        scene.setOnMouseClicked((MouseEvent event) -> {
+            if (MouseButton.SECONDARY.equals(event.getButton()))
+                ctxmenu.show(primaryStage, event.getScreenX(), event.getScreenY());
         });
     }
 
-    public void affichePopupMsg(String title, String txt) {
-
-        ViewLib.displayPopup(title,title,txt, Alert.AlertType.INFORMATION);
-
-    }
-
-    public void showPopupGameSettings() {
+    /**
+     *
+     */
+    private void showPopupGameSettings() {
         if (popupWindowSettings == null) {
             popupWindowSettings = new Stage();
             popupWindowSettings.initModality(Modality.APPLICATION_MODAL);
@@ -303,19 +283,12 @@ public class DemineurIHM extends Application {
                     .add(new Image(this.getClass().getResourceAsStream("/ressources/images/logoWhite.png")));
             popupWindowSettings.setScene(scene1);
         }
-        try {
-            popupWindowSettings.showAndWait();
-        } catch (Exception e) {
+        popupWindowSettings.showAndWait();
 
-        }
     }
 
     public void clearGameGrid() {
         gridButtons.getChildren().clear();
-    }
-
-    private int getNumberMines() {
-        return Integer.parseInt(txtNbMine.getText());
     }
 
     private int getNumberCasesX() {
@@ -330,15 +303,18 @@ public class DemineurIHM extends Application {
         return gridButtons;
     }
 
-    public void changeSizeWindows(){
-        if (primaryStage != null && getNumberCasesX() > 4){
+    public void changeSizeWindows() {
+        if (primaryStage != null && getNumberCasesX() > 4) {
             primaryStage.setWidth(500);
             primaryStage.setHeight(75 * getNumberCasesX());
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(75 * getNumberCasesX());
-        }
-        else {
-            primaryStage.setWidth(500);
+        } else {
+            try{
+                primaryStage.setWidth(500);
+            }catch(Exception e){
+                System.out.println(SystemLib.getCurrentMethod() +" Erreur "+e.getStackTrace());
+            }
             primaryStage.setHeight(75 * 5);
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(75 * 5);
