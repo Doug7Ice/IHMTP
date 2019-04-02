@@ -22,13 +22,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * @author leo doug rey
+ * @author Leo Doug Rey
  */
 public class DemineurIHM extends Application {
 
     private static GridPane gridButtons = new GridPane();
     private static TextField txtNbErrors = new TextField();
     private static TextField txtNbClicks = new TextField();
+
     //Stages
     private Stage popupWindowSettings;
     //Composants jeu
@@ -110,13 +111,7 @@ public class DemineurIHM extends Application {
 
         //Menu add RadioMenu for the look
         menuRadioCaspianTheme.setSelected(false);
-        menuRadioCaspianTheme.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                System.out.println("Caspian");
-                setUserAgentStylesheet(STYLESHEET_CASPIAN);
-            }
-        });
+        menuRadioCaspianTheme.setOnAction((ActionEvent e) -> setUserAgentStylesheet(STYLESHEET_CASPIAN));
         menuRadioCaspianTheme.setToggleGroup(toggleGroupLook);
 
         menuRadioModenaTheme.setSelected(true);
@@ -231,7 +226,7 @@ public class DemineurIHM extends Application {
 
             txtNbMine.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue,
                                                   String newValue) -> {
-                if (!newValue.matches("[1-9]|10")) {
+                if (!newValue.matches("30|[12][0-9]|[1-9]")) {
                     new Vibrate(txtNbMine, Orientation.HORIZONTAL).play();
                     txtNbMine.clear();
                 }
@@ -279,7 +274,6 @@ public class DemineurIHM extends Application {
             popupWindowSettings.setScene(scene1);
         }
         popupWindowSettings.showAndWait();
-
     }
 
     public void clearGameGrid() {

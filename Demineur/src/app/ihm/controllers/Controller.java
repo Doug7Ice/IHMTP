@@ -66,6 +66,7 @@ public class Controller {
         //create grid and display it
         createGameGrid();
         DateTimeLib.chronoReset();
+        winCheck();
     }
 
     /**
@@ -98,8 +99,6 @@ public class Controller {
         gridGame.setHgap(4);
         //Set a gap between vertical node (Button)
         gridGame.setVgap(4);
-        //Set visible lines between row and column
-        gridGame.setVisible(true);
     }
 
     private void showAllZero(int x, int y) {
@@ -259,15 +258,21 @@ public class Controller {
                 showAllZero(x, y);
             }
             //Win Check
-            if (wrk.isGameOver()) {
-                if (wrk.errors() > 0)
-                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait " + wrk.errors() + " erreur(s) et joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.WARNING);
-                else
-                    ViewLib.displayPopup("Fin du jeu !", "Vos avez fait aucune erreur !!! Vous avez joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.INFORMATION);
-            }
+            winCheck();
         }
         ihm.setTxtNbClicks(wrk.getNbClicks() + "");
     }
+
+
+    private void winCheck() {
+        if (wrk.isGameOver()) {
+            if (wrk.errors() > 0)
+                ViewLib.displayPopup("Fin du jeu !", "Vos avez fait " + wrk.errors() + " erreur(s) et joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.WARNING);
+            else
+                ViewLib.displayPopup("Fin du jeu !", "Vos avez fait aucune erreur !!! Vous avez joué pendant " + DateTimeLib.chronoStringElapsedTime() + " secondes", "Vous pouvez relancer une partie avec le bouton ou changer les variables dans le menu jeu", Alert.AlertType.INFORMATION);
+        }
+    }
+
 
     private void setButtonBackgroundDefault(Button btn) {
         btn.setBackground(new Background(new BackgroundFill(Color.rgb(40, 80, 70), CornerRadii.EMPTY, Insets.EMPTY)));

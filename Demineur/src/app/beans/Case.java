@@ -13,16 +13,11 @@ public class Case {
     private  Choices value;
     private  boolean isOpen;
     private  boolean isFlag;
-    private  int neerBomb;
     private  int positionX;
     private  int positionY;
 
     public Choices getValue() {
         return value;
-    }
-
-    public void setValue(Choices value) {
-        this.value = value;
     }
 
     public boolean isOpen() {
@@ -39,14 +34,6 @@ public class Case {
 
     public void setFlag(boolean flag) {
         isFlag = flag;
-    }
-
-    public int getNeerBomb() {
-        return neerBomb;
-    }
-
-    public void setNeerBomb(int neerBomb) {
-        this.neerBomb = neerBomb;
     }
 
     public int getPositionX() {
