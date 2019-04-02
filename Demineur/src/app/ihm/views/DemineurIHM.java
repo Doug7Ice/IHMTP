@@ -16,10 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 /**
  * @author Leo Doug Rey
@@ -72,9 +75,12 @@ public class DemineurIHM extends Application {
     private HBox hboxNbMines = new HBox();
     private HBox hboxNbX = new HBox();
     private HBox hboxNbY = new HBox();
+    private Slider sliderVolume;
 
     private Controller ctrl;
     private Stage primaryStage;
+
+    private File boom = new File("src/ressources/sounds/explosion.mp3");
 
     @Override
     public void start(Stage stage) {
@@ -120,8 +126,9 @@ public class DemineurIHM extends Application {
         menuTheme.getItems().addAll(menuRadioModenaTheme, menuRadioCaspianTheme);
 
         //MenuTaille add Slider
-        Slider slrSpeed = new Slider(0, 100, 30);
-        CustomMenuItem cmiSlider = new CustomMenuItem(slrSpeed);
+        sliderVolume = new Slider(0, 100, 30);
+        CustomMenuItem cmiSlider = new CustomMenuItem();
+        cmiSlider.setContent(sliderVolume);
         cmiSlider.setHideOnClick(false);
         menuTaille.getItems().add(cmiSlider);
 
@@ -309,6 +316,9 @@ public class DemineurIHM extends Application {
     public void setTxtNbErrors(String txt) {
         new Vibrate(root, Orientation.HORIZONTAL).play();
         txtNbErrors.setText(txt);
+        AudioClip explode = new AudioClip(boom.toURI().toString());
+        explode.setVolume(sliderVolume.getValue());
+        explode.play();
     }
 
     public void setTxtNbClicks(String txt) {
