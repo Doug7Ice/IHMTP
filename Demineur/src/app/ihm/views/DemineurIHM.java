@@ -1,6 +1,5 @@
 package app.ihm.views;
 
-import app.helpers.SystemLib;
 import app.helpers.Vibrate;
 import app.helpers.ViewLib;
 import app.ihm.controllers.Controller;
@@ -194,12 +193,8 @@ public class DemineurIHM extends Application {
         final MenuItem otherItem = new MenuItem(null, new Label("Background Color"));
 
         final MenuItem resizeItem = new MenuItem(null, colorssPicker);
-        resizeItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                root.setBackground(new Background(new BackgroundFill(colorssPicker.getValue(), null, null)));
-            }
-        });
+        resizeItem.setOnAction((ActionEvent event) ->
+                root.setBackground(new Background(new BackgroundFill(colorssPicker.getValue(), null, null))));
 
         final ContextMenu ctxmenu = new ContextMenu(otherItem, resizeItem);
 
@@ -310,11 +305,7 @@ public class DemineurIHM extends Application {
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(75 * getNumberCasesX());
         } else {
-            try{
-                primaryStage.setWidth(500);
-            }catch(Exception e){
-                System.out.println(SystemLib.getCurrentMethod() +" Erreur "+e.getStackTrace());
-            }
+            primaryStage.setWidth(500);
             primaryStage.setHeight(75 * 5);
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(75 * 5);
