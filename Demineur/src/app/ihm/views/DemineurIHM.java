@@ -21,7 +21,6 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -66,6 +65,7 @@ public class DemineurIHM extends Application {
     private ToggleGroup toggleGroupLook = new ToggleGroup();
     private RadioMenuItem menuRadioCaspianTheme = new RadioMenuItem("Caspian");
     private RadioMenuItem menuRadioModenaTheme = new RadioMenuItem("Modena");
+    private RadioMenuItem menuRadioAquaFX = new RadioMenuItem("AquaFX");
 
     //Popup settings du jeu (menus)
     private TextField txtNbMine = new TextField("10");
