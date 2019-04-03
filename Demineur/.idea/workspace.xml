@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="ez win">
-      <change afterPath="$PROJECT_DIR$/src/ressources/sounds/explosion.mp3" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="soundDesign">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java" afterDir="false" />
     </list>
@@ -67,12 +66,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
+            <state relative-caret-position="130">
+              <caret line="326" column="74" selection-start-line="326" selection-start-column="74" selection-end-line="326" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6353#6354#0" expanded="true" />
-                <element signature="e#6408#6409#0" expanded="true" />
+                <element signature="e#6591#6592#0" expanded="true" />
+                <element signature="e#6646#6647#0" expanded="true" />
                 <element signature="e#11865#11866#0" expanded="true" />
                 <element signature="e#11914#11915#0" expanded="true" />
                 <element signature="e#11951#11952#0" expanded="true" />
@@ -81,8 +80,19 @@
                 <element signature="e#12112#12113#0" expanded="true" />
                 <element signature="e#12152#12153#0" expanded="true" />
                 <element signature="e#12186#12187#0" expanded="true" />
-                <element signature="e#12889#12890#0" expanded="true" />
-                <element signature="e#12929#12930#0" expanded="true" />
+                <element signature="e#13679#13680#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/helpers/Vibrate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -179,10 +189,10 @@
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="794" />
     <option name="width" value="814" />
-    <option name="height" value="867" />
+    <option name="height" value="868" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -202,6 +212,19 @@
               <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
               <item name="Demineur" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demineur" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demineur" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Demineur" type="b2602c69:ProjectViewProjectNode" />
@@ -462,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554191755115</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="soundDesign">
+      <created>1554195954995</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1554195954995</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -576,7 +606,8 @@
     <MESSAGE value="C'est bon j'arrete" />
     <MESSAGE value="Please work...." />
     <MESSAGE value="ez win" />
-    <option name="LAST_COMMIT_MESSAGE" value="ez win" />
+    <MESSAGE value="soundDesign" />
+    <option name="LAST_COMMIT_MESSAGE" value="soundDesign" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -641,27 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="304" column="25" selection-start-line="304" selection-start-column="25" selection-end-line="304" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/helpers/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/helpers/BasicAnimation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="57" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#680#681#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -750,18 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/helpers/Vibrate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#400#401#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/workers/IMineHuntModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -806,14 +804,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
+    <entry file="file://$PROJECT_DIR$/src/app/helpers/BasicAnimation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
+        <state relative-caret-position="-111">
+          <caret line="6" column="57" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6353#6354#0" expanded="true" />
-            <element signature="e#6408#6409#0" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#649#650#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/helpers/Animation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/helpers/Vibrate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="326" column="74" selection-start-line="326" selection-start-column="74" selection-end-line="326" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6591#6592#0" expanded="true" />
+            <element signature="e#6646#6647#0" expanded="true" />
             <element signature="e#11865#11866#0" expanded="true" />
             <element signature="e#11914#11915#0" expanded="true" />
             <element signature="e#11951#11952#0" expanded="true" />
@@ -822,8 +851,7 @@
             <element signature="e#12112#12113#0" expanded="true" />
             <element signature="e#12152#12153#0" expanded="true" />
             <element signature="e#12186#12187#0" expanded="true" />
-            <element signature="e#12889#12890#0" expanded="true" />
-            <element signature="e#12929#12930#0" expanded="true" />
+            <element signature="e#13679#13680#0" expanded="true" />
           </folding>
         </state>
       </provider>

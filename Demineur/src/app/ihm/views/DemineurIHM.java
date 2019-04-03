@@ -3,6 +3,8 @@ package app.ihm.views;
 import app.helpers.Vibrate;
 import app.helpers.ViewLib;
 import app.ihm.controllers.Controller;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,8 +21,10 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -319,6 +323,14 @@ public class DemineurIHM extends Application {
         AudioClip explode = new AudioClip(boom.toURI().toString());
         explode.setVolume(sliderVolume.getValue());
         explode.play();
+
+        RotateTransition rotator = new RotateTransition(Duration.millis(1000), root);
+        rotator.setFromAngle(0);
+        rotator.setToAngle(360);
+        rotator.setInterpolator(Interpolator.LINEAR);
+        rotator.setCycleCount(1);
+        rotator.play();
+
     }
 
     public void setTxtNbClicks(String txt) {
