@@ -79,10 +79,7 @@ public class Controller implements Initializable {
         fileChooser.setTitle("FileChooserExample");
         File homeDir= new File(System.getProperty("user.home"));
         fileChooser.setInitialDirectory(homeDir);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
-                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
-                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
 
     }
 }
