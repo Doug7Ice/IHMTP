@@ -28,7 +28,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("S01");
+        stage.setTitle("S03");
         stage.show();
 
         stage.setOnCloseRequest(e -> ctrl.quitter());

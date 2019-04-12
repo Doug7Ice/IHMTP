@@ -20,9 +20,6 @@ public class Controller implements Initializable {
 
     private WorkerItf wrk;
     private ViewModel model;
-    @FXML
-    private GridPane monTableauMorpion;
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
