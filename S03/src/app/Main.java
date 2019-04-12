@@ -31,8 +31,6 @@ public class Main extends Application {
         stage.setTitle("S01");
         stage.show();
 
-        stage.setOnCloseRequest(e -> ctrl.quitter());
-
     }
 
 }
