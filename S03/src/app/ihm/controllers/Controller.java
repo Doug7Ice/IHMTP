@@ -13,6 +13,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -25,10 +26,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 
-    private WorkerItf wrk;
-    private ViewModel model;
-    private MediaPlayer mediaPlayer;
-
+    public Stage stage;
     @FXML
     public MenuBar menuVLFX;
     @FXML
@@ -37,8 +35,10 @@ public class Controller implements Initializable {
     public MediaView mediaView;
     @FXML
     public MenuItem openMenu;
-
-
+    private WorkerItf wrk;
+    private ViewModel model;
+    private MediaPlayer mediaPlayer;
+    private FileChooser fileChooser;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,6 +46,16 @@ public class Controller implements Initializable {
 
         intiTestVideo();
 
+        initFileChooser();
+
+    }
+
+    private void initFileChooser() {
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("FileChooserExample");
+        File homeDir = new File(System.getProperty("user.home"));
+        fileChooser.setInitialDirectory(homeDir);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
     }
 
     private void intiTestVideo() {
@@ -57,11 +67,10 @@ public class Controller implements Initializable {
             String b = a.toString();
             System.out.println(b);
             Media currentMedia = new Media(video.toURI().toString());
-            mediaPlayer =  new MediaPlayer(currentMedia);
+            mediaPlayer = new MediaPlayer(currentMedia);
             mediaView.setMediaPlayer(mediaPlayer);
             mediaPlayer.setAutoPlay(true);
-        }
-        catch (IOException ioe){
+        } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
 
@@ -75,11 +84,20 @@ public class Controller implements Initializable {
 
     public void openFile(ActionEvent actionEvent) {
         mediaPlayer.pause();
-        FileChooser fileChooser= new FileChooser();
-        fileChooser.setTitle("FileChooserExample");
-        File homeDir= new File(System.getProperty("user.home"));
-        fileChooser.setInitialDirectory(homeDir);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            try {
+                //---Open the file with associated application
+                mediaPlayer.stop();
+                Media currentMedia = new Media(selectedFile.toURI().toString());
+                mediaPlayer = new MediaPlayer(currentMedia);
+                mediaView.setMediaPlayer(mediaPlayer);
+                mediaPlayer.play();
+            } catch (Exception e) {
+                System.err.println("ERROR: Unable to open the file");
+            }
+        }
 
     }
 }
+

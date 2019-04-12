@@ -25,6 +25,7 @@ public class Main extends Application {
         Parent root = loader.load();
         // Récupére le controleur
         Controller ctrl = loader.getController();
+        ctrl.stage = stage;
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
