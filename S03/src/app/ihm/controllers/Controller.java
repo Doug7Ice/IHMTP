@@ -3,21 +3,16 @@ package app.ihm.controllers;
 import app.ihm.models.ViewModel;
 import app.workers.Worker;
 import app.workers.WorkerItf;
-import com.sun.jndi.toolkit.url.Uri;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-
-import javax.xml.bind.annotation.XmlAnyAttribute;
+import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -80,6 +75,14 @@ public class Controller implements Initializable {
 
     public void openFile(ActionEvent actionEvent) {
         mediaPlayer.pause();
+        FileChooser fileChooser= new FileChooser();
+        fileChooser.setTitle("FileChooserExample");
+        File homeDir= new File(System.getProperty("user.home"));
+        fileChooser.setInitialDirectory(homeDir);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
 
     }
 }
