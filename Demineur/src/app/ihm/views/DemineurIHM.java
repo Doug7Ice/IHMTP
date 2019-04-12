@@ -24,7 +24,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import com.aquafx_project.AquaFx;
 
 import java.io.File;
 
@@ -130,7 +129,6 @@ public class DemineurIHM extends Application {
         menuRadioModenaTheme.setToggleGroup(toggleGroupLook);
 
         menuRadioAquaFX.setSelected(false);
-        menuRadioAquaFX.setOnAction((ActionEvent e) -> AquaFx.style());
         menuRadioAquaFX.setToggleGroup(toggleGroupLook);
 
         menuTheme.getItems().addAll(menuRadioModenaTheme, menuRadioCaspianTheme,menuRadioAquaFX);
