@@ -1,0 +1,14 @@
+ 
+.root .spinner{ 
+   -fx-max-width: 60;
+}
+
+.spinner{ 
+   -fx-max-width: 60;
+}
+
+
+ .root > .spinner { 
+   -fx-max-width: 60;
+}
+
