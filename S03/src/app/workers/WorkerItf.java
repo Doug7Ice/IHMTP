@@ -8,5 +8,6 @@ package app.workers;
  * @version 1.0 / date
  */
 public interface WorkerItf {
+    void loadVideo(String fileLocation);
     void writeAnnotation(double timestampMillis, String annotation);
 }

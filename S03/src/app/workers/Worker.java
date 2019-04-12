@@ -95,4 +95,8 @@ public class Worker implements WorkerItf {
         return annotationList;
     }
 
+    @Override
+    public void loadVideo(String fileLocation) {
+
+    }
 }
