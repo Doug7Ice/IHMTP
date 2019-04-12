@@ -1,6 +1,5 @@
 package app.ihm.controllers;
 
-import app.helpers.Choices;
 import app.ihm.models.ViewModel;
 import app.workers.Worker;
 import app.workers.WorkerItf;
@@ -24,26 +23,10 @@ public class Controller implements Initializable {
     @FXML
     private GridPane monTableauMorpion;
 
-    private Choices[][] game;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         wrk = new Worker();
-        game = new Choices[3][3];
-        game = wrk.fill(game);
-        int row = 0;
-        int column = 0;
-        int compteur = 0;
-        for (Node child : monTableauMorpion.getChildren()){
-            if (child instanceof Label) {
-                row = compteur / 3;
-                column = compteur % 3;
-                Label temp = (Label) child;
-                System.out.println(row + " " + column);
-                temp.setText(game[row][column].getValue());
-                compteur++;
-            }
-        }
     }
 
     public void quitter() {
