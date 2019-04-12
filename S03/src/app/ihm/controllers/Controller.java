@@ -49,14 +49,15 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         wrk = new Worker();
 
-        //intiTestVideo();
+        intiTestVideo();
 
     }
 
     private void intiTestVideo() {
 
         try {
-            File video = new File("/Users/leore/Nextcloud/NieR/Automata/NieR-Automata Édition Game of the YoRHA _ Bande-annonce de lancement_Full-HD_60fps.mp4/").getCanonicalFile();
+            //File video = new File("/Users/leore/Nextcloud/NieR/Automata/NieR-Automata Édition Game of the YoRHA _ Bande-annonce de lancement_Full-HD_60fps.mp4/").getCanonicalFile();
+            File video = new File("src/ressources/219913.mp4").getCanonicalFile();
             URI a = video.toURI();
             String b = a.toString();
             System.out.println(b);
