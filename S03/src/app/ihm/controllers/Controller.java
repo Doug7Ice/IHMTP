@@ -4,6 +4,8 @@ import app.ihm.models.ViewModel;
 import app.workers.Worker;
 import app.workers.WorkerItf;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -72,6 +74,20 @@ public class Controller implements Initializable {
             }
         });
         updateLblTotalDuration();
+
+        //Gestion du slider
+        // Time slider
+        sliderTime.valueProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable ov) {
+                if (sliderTime.isValueChanging()) {
+                    // multiply duration by percentage calculated by slider position
+                    if(duration!=null) {
+                        mediaPlayer.seek(duration.multiply(sliderTime.getValue() / 100.0));
+                    }
+                    updateValues();
+                }
+            }
+        });
     }
 
     private void initFileChooser() {
@@ -102,7 +118,6 @@ public class Controller implements Initializable {
 
     private void updateLblTotalDuration(){
         mediaPlayer.setOnReady(new Runnable() {
-
             @Override
             public void run() {
                 duration = mediaPlayer.getTotalDuration();
