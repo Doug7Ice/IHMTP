@@ -35,6 +35,10 @@ public class Controller implements Initializable {
     public MediaView mediaView;
     @FXML
     public MenuItem openMenu;
+    @FXML
+    public MenuItem quitMenu;
+    @FXML
+    public MenuItem saveMenu;
     private WorkerItf wrk;
     private ViewModel model;
     private MediaPlayer mediaPlayer;
@@ -61,8 +65,7 @@ public class Controller implements Initializable {
     private void intiTestVideo() {
 
         try {
-            //File video = new File("/Users/leore/Nextcloud/NieR/Automata/NieR-Automata Édition Game of the YoRHA _ Bande-annonce de lancement_Full-HD_60fps.mp4/").getCanonicalFile();
-            File video = new File("src/ressources/219913.mp4").getCanonicalFile();
+            File video = new File("src/ressources/test.mp4").getCanonicalFile();
             URI a = video.toURI();
             String b = a.toString();
             System.out.println(b);
@@ -73,13 +76,15 @@ public class Controller implements Initializable {
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
-
-        //wrk.loadVideo("");
     }
 
     public void quitter() {
         System.out.println("app is closing !");
         System.exit(0);
+    }
+
+    public void save(){
+        System.out.println("Heu... Hehe c'est embarrassant.........");
     }
 
     public void openFile(ActionEvent actionEvent) {
