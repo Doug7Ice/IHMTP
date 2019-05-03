@@ -6,16 +6,16 @@ import app.workers.WorkerItf;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -55,28 +55,41 @@ public class Controller implements Initializable {
     public Label lblTime;
     @FXML
     public Label lblCurrentTime;
+    @FXML
+    public Button fullscreenBtn;
+    @FXML
+    public Slider sliderVolume;
+    @FXML
+    public Button playBtn;
     private WorkerItf wrk;
     private ViewModel model;
     private MediaPlayer mediaPlayer;
     private FileChooser fileChooser;
     private boolean isBeingPlayed;
     private Duration duration;
+    private Image imgPlay;
+    private Image imgPause;
+    private ImageView imgViewPlay;
+    private ImageView imgViewPause;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         wrk = new Worker();
         intiTestVideo();
         initFileChooser();
-        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-                updateValues();
-            }
-        });
+        setListenerMediaPlayer();
         updateLblTotalDuration();
+        imgPlay = new Image(getClass().getResourceAsStream("play-solid.png"));
+        imgViewPlay = new ImageView(imgPlay);
+        imgViewPlay.setFitHeight(25);
+        imgViewPlay.setFitWidth(25);
+        imgPause = new Image(getClass().getResourceAsStream("pause-solid.png"));
+        imgViewPause = new ImageView(imgPause);
+        imgViewPause.setFitHeight(25);
+        imgViewPause.setFitWidth(25);
+        playBtn.setGraphic(imgViewPause);
 
-        //Gestion du slider
-        // Time slider
+        //Gestion du slider média
         sliderTime.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable ov) {
                 if (sliderTime.isValueChanging()) {
@@ -86,6 +99,26 @@ public class Controller implements Initializable {
                     }
                     updateValues();
                 }
+            }
+        });
+
+        //Gestion du slider volume
+        sliderVolume.valueProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable ov) {
+                if (sliderVolume.isValueChanging()) {
+                    mediaPlayer.setVolume(sliderVolume.getValue() / 100.0);
+                }
+            }
+        });
+
+        //Possibilité de cliquer sur le slider pour avancer/reculer
+        sliderTime.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                sliderTime.setValueChanging(true);
+                double value = (event.getX()/sliderTime.getWidth())*sliderTime.getMax();
+                sliderTime.setValue(value);
+                sliderTime.setValueChanging(false);
             }
         });
     }
@@ -108,9 +141,9 @@ public class Controller implements Initializable {
                 if (!sliderTime.isDisabled() && duration.greaterThan(Duration.ZERO) && !sliderTime.isValueChanging()) {
                     sliderTime.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100.0);
                 }
-                //if (!volumeSlider.isValueChanging()) {
-                 //   volumeSlider.setValue((int) Math.round(mp.getVolume() * 100));
-               // }
+                if (!sliderVolume.isValueChanging()) {
+                    sliderVolume.setValue((int) Math.round(mediaPlayer.getVolume() * 100));
+                }
             }
         });
 
@@ -154,6 +187,10 @@ public class Controller implements Initializable {
         System.out.println("Heu... Hehe c'est embarrassant.........");
     }
 
+    public void setFullscreen(){
+        stage.setFullScreen(true);
+    }
+
     public void resume(){
         Duration tempActuel = mediaPlayer.getCurrentTime();
         Duration tempTotal = mediaPlayer.getTotalDuration();
@@ -184,12 +221,22 @@ public class Controller implements Initializable {
                 mediaView.setMediaPlayer(mediaPlayer);
                 isBeingPlayed = true;
                 mediaPlayer.play();
+                setListenerMediaPlayer();
                 updateLblTotalDuration();
             } catch (Exception e) {
                 System.err.println("ERROR: Unable to open the file");
             }
         }
 
+    }
+
+    private void setListenerMediaPlayer() {
+        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+                updateValues();
+            }
+        });
     }
 }
 
