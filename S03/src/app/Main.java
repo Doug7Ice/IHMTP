@@ -1,15 +1,16 @@
 package app;
 
 import app.beans.Annotation;
+import app.helpers.ViewLib;
 import app.ihm.controllers.Controller;
 import app.workers.Worker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
-import java.sql.Timestamp;
 
 /**
  * @author Anthony Alonso Lopez
@@ -35,6 +36,18 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("S03");
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
+            if (popup.showAndWait().get() != ButtonType.OK) {
+                event.consume();
+            }
+        });
+
+        Annotation a = new Annotation("yusk2", 1000, 0, "heyBoy");
+
+        Worker w = new Worker();
+        w.notification();
+        w.notif(stage, a);
     }
 
 }
