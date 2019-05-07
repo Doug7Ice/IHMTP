@@ -41,28 +41,35 @@ public class Worker implements WorkerItf {
     }
 
     @Override
-    public void writeAnnotation(double timestampMillis, String annotation) {
+    public void writeAnnotation(double timestampMillis, String annotation, String videoName) {
         //First Employee
         //ArrayList<JSONObject> annotations = new ArrayList<>();
-
+//TODO Utiliser la lib GSon de google car caca
         JSONObject annotationDetails = new JSONObject();
-        annotationDetails.put("annotation", annotation);
+        try {
+            annotationDetails.put("annotation", annotation);
         JSONObject timestamp = new JSONObject();
         timestamp.put("millis", timestampMillis);
         JSONObject duration = new JSONObject();
         duration.put("millis", duration);
 
-        annotationDetails.putAll(timestamp);
-        annotationDetails.putAll(duration);
+            annotationDetails.put("",timestamp);
+            annotationDetails.put("",duration);
+        }catch (Exception e){
+            //System.out.println(e.getStackTrace());
+        }
+
 
         //Write JSON file
-        try (FileWriter file = new FileWriter("employees.json")) {
-
-            file.write(annotationDetails.toJSONString());
+        try (FileWriter file = new FileWriter(videoName + ".json")) {
+            String tes = annotationDetails.toJSONString();
+            file.write(tes);
             file.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e){
+            System.out.println("dasda");
         }
     }
 

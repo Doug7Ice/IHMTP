@@ -45,7 +45,7 @@ public class Controller implements Initializable {
         wrk = new Worker();
 
         intiTestVideo();
-
+        //wrk.writeAnnotation(5000,"asdasd","asdasdasdasd");
     }
 
     private void intiTestVideo() {
