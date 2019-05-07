@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Fliptable" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Fliptable">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../S03/src/app/ihm/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../S03/src/app/ihm/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../S03/src/app/workers/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../S03/src/app/workers/Worker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../S03/src/app/workers/WorkerItf.java" beforeDir="false" afterPath="$PROJECT_DIR$/../S03/src/app/workers/WorkerItf.java" afterDir="false" />
+    </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -63,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="194" column="33" lean-forward="true" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
+            <state relative-caret-position="988">
+              <caret line="161" column="86" lean-forward="true" selection-start-line="161" selection-start-column="86" selection-end-line="161" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#8719#12390#0" />
@@ -565,9 +570,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.19151671" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.19151671" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -576,7 +582,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
-      <window_info active="true" anchor="bottom" x="-55" y="318" width="1556" height="237" id="Run" order="2" visible="true" weight="0.3263889" />
+      <window_info anchor="bottom" x="-55" y="318" width="1556" height="237" id="Run" order="2" weight="0.3263889" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -900,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/ihm/views/DemineurIHM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="194" column="33" lean-forward="true" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
+        <state relative-caret-position="988">
+          <caret line="161" column="86" lean-forward="true" selection-start-line="161" selection-start-column="86" selection-end-line="161" selection-end-column="86" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#8719#12390#0" />

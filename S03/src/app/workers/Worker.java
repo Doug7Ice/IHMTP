@@ -1,102 +1,45 @@
 package app.workers;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import app.beans.Annotation;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class Worker implements WorkerItf {
-    private final static String FILEPATH = "C:/Users/anthonyc.alonsolo/Documents/GitHub/IHMTP/src/";
-    private final static double duration = 5000;
-    private static boolean isFirstAnnotation = false;
+    private static final String jsonLocation = "src\\ressources\\";
+    private final GsonBuilder builder;
+    private final Gson gson;
     private IoMaster io;
 
     public Worker() {
         this.io = new IoMaster();
-
-
+        builder = new GsonBuilder();
+        gson = builder.create();
     }
 
-    private static void parseAnnotationObject(JSONObject annotation) {
-        //Get employee object within list
-        JSONObject employeeObject = (JSONObject) annotation.get("employee");
-
-        //Get employee first name
-        String firstName = (String) employeeObject.get("firstName");
-        System.out.println(firstName);
-
-        //Get employee last name
-        String lastName = (String) employeeObject.get("lastName");
-        System.out.println(lastName);
-
-        //Get employee website name
-        String website = (String) employeeObject.get("website");
-        System.out.println(website);
-    }
-
-    @Override
-    public void writeAnnotation(double timestampMillis, String annotation) {
-        //First Employee
-        //ArrayList<JSONObject> annotations = new ArrayList<>();
-
-        JSONObject annotationDetails = new JSONObject();
-        annotationDetails.put("annotation", annotation);
-        JSONObject timestamp = new JSONObject();
-        timestamp.put("millis", timestampMillis);
-        JSONObject duration = new JSONObject();
-        duration.put("millis", duration);
-
-        annotationDetails.putAll(timestamp);
-        annotationDetails.putAll(duration);
-
-        //Write JSON file
-        try (FileWriter file = new FileWriter("employees.json")) {
-
-            file.write(annotationDetails.toJSONString());
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public boolean newAnnotation(Annotation newAnnotation) {
+        ArrayList<Annotation> listOfAnnotation = readAnnotation(newAnnotation.getVideoName());
+        listOfAnnotation.add(newAnnotation);
+        String json = gson.toJson(listOfAnnotation);
+        System.out.println(json);
+        return io.ecrireFichier(new ArrayList<String>() {{
+            add(json);
+        }}, jsonLocation, newAnnotation.getVideoName() + ".json");
     }
 
     /**
      * @param videoName
-     * @return
+     * @return an Arraylist of Annotation
      */
-    private ArrayList<String> readAnnotation(String videoName) {
-        JSONArray annotationList = null;
-        //JSON parser object to parse read file
-        JSONParser jsonParser = new JSONParser();
-
-        try (FileReader reader = new FileReader(videoName + ".json")) {
-            //Read JSON file
-            Object obj = jsonParser.parse(reader);
-
-            annotationList = (JSONArray) obj;
-            System.out.println(annotationList);
-
-            //Iterate over employee array
-            annotationList.forEach(annotation -> parseAnnotationObject((JSONObject) annotation));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return annotationList;
+    public ArrayList<Annotation> readAnnotation(String videoName) {
+        ArrayList<String> list = io.lireFichier(jsonLocation, videoName + ".json");
+        if (list == null) return new ArrayList<>();
+        return gson.fromJson(list.get(0), new TypeToken<ArrayList<Annotation>>() {
+        }.getType());
     }
 
-    @Override
-    public void loadVideo(String fileLocation) {
 
-    }
 }

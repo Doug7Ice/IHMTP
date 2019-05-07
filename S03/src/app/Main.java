@@ -1,11 +1,15 @@
 package app;
 
+import app.beans.Annotation;
 import app.ihm.controllers.Controller;
+import app.workers.Worker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.sql.Timestamp;
 
 /**
  * @author Anthony Alonso Lopez
@@ -31,7 +35,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("S03");
         stage.show();
-
     }
 
 }
