@@ -3,15 +3,13 @@ package app.workers;
 import app.beans.Annotation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Worker implements WorkerItf {
-    private final static String FILEPATH = "C:/Users/anthonyc.alonsolo/Documents/GitHub/IHMTP/src/";
-    private final static double duration = 5000;
-    private static boolean isFirstAnnotation = false;
+    private static final String jsonLocation = "src\\ressources\\";
     private final GsonBuilder builder;
     private final Gson gson;
     private IoMaster io;
@@ -22,31 +20,26 @@ public class Worker implements WorkerItf {
         gson = builder.create();
     }
 
-    private static void parseAnnotationObject() {
-    }
-
-
     public boolean newAnnotation(Annotation newAnnotation) {
-        boolean ok = false;
-        String json = gson.toJson(newAnnotation);
+        ArrayList<Annotation> listOfAnnotation = readAnnotation(newAnnotation.getVideoName());
+        listOfAnnotation.add(newAnnotation);
+        String json = gson.toJson(listOfAnnotation);
         System.out.println(json);
-        io.ecrireFichier((ArrayList<String>) Arrays.asList(json), "C:\\Users\\anthonyc.alonsolo\\Documents\\GitHub\\IHMTP\\S03\\src\\ressources", newAnnotation.getVideoName());
-        return ok;
-    }
-
-    public void writeAnnotation(double timestampMillis, String annotation, String videoName) {
-
+        return io.ecrireFichier(new ArrayList<String>() {{
+            add(json);
+        }}, jsonLocation, newAnnotation.getVideoName() + ".json");
     }
 
     /**
      * @param videoName
-     * @return
+     * @return an Arraylist of Annotation
      */
-    private ArrayList<Annotation> readAnnotation(String videoName) {
-        return null;
+    public ArrayList<Annotation> readAnnotation(String videoName) {
+        ArrayList<String> list = io.lireFichier(jsonLocation, videoName + ".json");
+        if (list == null) return new ArrayList<>();
+        return gson.fromJson(list.get(0), new TypeToken<ArrayList<Annotation>>() {
+        }.getType());
     }
 
-    public void loadVideo(String fileLocation) {
 
-    }
 }
