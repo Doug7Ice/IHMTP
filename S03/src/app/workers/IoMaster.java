@@ -52,7 +52,7 @@ public class IoMaster {
         }
         boolean result = false;
         if (list != null) {
-            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath + outputFileName, false), StandardCharsets.UTF_8))) {
+            try  (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath + outputFileName, false), StandardCharsets.UTF_8))) {
                 for (String line : list) {
                     if (line != null) {
                         bw.write(line);
