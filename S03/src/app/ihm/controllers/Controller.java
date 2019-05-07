@@ -11,7 +11,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,6 +54,8 @@ public class Controller implements Initializable {
     @FXML
     public MenuItem saveMenu;
     @FXML
+    public MenuItem menuAnnotation;
+    @FXML
     public Slider sliderTime;
     @FXML
     public Label lblTime;
@@ -67,10 +73,6 @@ public class Controller implements Initializable {
     private FileChooser fileChooser;
     private boolean isBeingPlayed;
     private Duration duration;
-    private Image imgPlay;
-    private Image imgPause;
-    private ImageView imgViewPlay;
-    private ImageView imgViewPause;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,15 +81,8 @@ public class Controller implements Initializable {
         initFileChooser();
         setListenerMediaPlayer();
         updateLblTotalDuration();
-        imgPlay = new Image(getClass().getResourceAsStream("play-solid.png"));
-        imgViewPlay = new ImageView(imgPlay);
-        imgViewPlay.setFitHeight(25);
-        imgViewPlay.setFitWidth(25);
-        imgPause = new Image(getClass().getResourceAsStream("pause-solid.png"));
-        imgViewPause = new ImageView(imgPause);
-        imgViewPause.setFitHeight(25);
-        imgViewPause.setFitWidth(25);
-        playBtn.setGraphic(imgViewPause);
+
+        playBtn.setStyle("-fx-background-image: url(ressources/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
 
         //Gestion du slider média
         sliderTime.valueProperty().addListener(new InvalidationListener() {
@@ -121,6 +116,22 @@ public class Controller implements Initializable {
                 sliderTime.setValueChanging(false);
             }
         });
+
+        //Popup pour l'ajout d'annotations
+        menuAnnotation.setOnAction((event) -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
+                Scene scene = new Scene(loader.load(), 600, 400);
+                Stage stage = new Stage();
+                stage.setTitle("Add your Annotations !");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        });
+
     }
 
     private void initFileChooser() {
@@ -146,6 +157,15 @@ public class Controller implements Initializable {
                 }
             }
         });
+    }
+
+    private void changeStyleButtonPlayPause(){
+        if (isBeingPlayed){
+            playBtn.setStyle("-fx-background-image: url(ressources/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+        }
+        else {
+            playBtn.setStyle("-fx-background-image: url(ressources/play-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+        }
 
     }
 
@@ -198,6 +218,7 @@ public class Controller implements Initializable {
         if (isBeingPlayed && !tempActuel.equals(tempTotal)){
             mediaPlayer.pause();
             isBeingPlayed = false;
+            changeStyleButtonPlayPause();
         }
         else if (tempActuel.equals(tempTotal)){
             mediaPlayer.seek(new Duration(0));
@@ -205,6 +226,7 @@ public class Controller implements Initializable {
         else {
             mediaPlayer.play();
             isBeingPlayed = true;
+            changeStyleButtonPlayPause();
         }
     }
 
@@ -227,8 +249,8 @@ public class Controller implements Initializable {
                 System.err.println("ERROR: Unable to open the file");
             }
         }
-
     }
+
 
     private void setListenerMediaPlayer() {
         mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
