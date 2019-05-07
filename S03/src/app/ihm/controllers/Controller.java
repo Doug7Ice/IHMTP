@@ -98,6 +98,31 @@ public class Controller implements Initializable {
             }
         });
 
+        //================ TEST ANTHO
+        sliderTime.setMajorTickUnit(5);
+        sliderTime.setMinorTickCount(0);
+        sliderTime.setShowTickMarks(true);
+        sliderTime.setShowTickLabels(true);
+        sliderTime.setSnapToTicks(true);
+        sliderTime.setMinHeight(Slider.USE_PREF_SIZE);
+
+        /*/NumberAxis axis = (NumberAxis) sliderTime.lookup(".axis");
+        Bounds bounds = axis.localToScene(axis.getBoundsInLocal());
+
+        double x = axis.getDisplayPosition(14);
+        x += axis.getLayoutX() + bounds.getMinX();
+
+        line = new Line(x,0,x,100);
+        line.getStyleClass().clear();
+        line.getStyleClass().add("multi_graph_scribe");
+        glassPane.getChildren().add(line);
+        if(!line.isVisible())
+            line.setVisible(true);*/
+
+        //================ FIN TEST ANTHO
+
+
+
         //Gestion du slider volume
         sliderVolume.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable ov) {

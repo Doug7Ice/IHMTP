@@ -12,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 /**
  * @author Anthony Alonso Lopez
  */
@@ -34,7 +36,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("S03");
+        stage.setTitle("Groupe 3 - Série 3: Lecteur et Annnotateur Multimedia");
         stage.show();
         stage.setOnCloseRequest(event -> {
             Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
@@ -42,12 +44,7 @@ public class Main extends Application {
                 event.consume();
             }
         });
-
-        Annotation a = new Annotation("yusk2", 1000, 0, "heyBoy");
-
-        Worker w = new Worker();
-        w.notification();
-        w.notif(stage, a);
+        ///ctrl.setFullscreen();
     }
 
 }
