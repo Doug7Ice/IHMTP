@@ -121,12 +121,15 @@ public class Controller implements Initializable {
         //Popup pour l'ajout d'annotations
         menuAnnotation.setOnAction((event) -> {
             try {
+                ControllerAnnotations controllerAnnotations = new ControllerAnnotations();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
+                loader.setController(controllerAnnotations);
                 Scene scene = new Scene(loader.load(), 600, 400);
                 Stage stage = new Stage();
                 stage.setTitle("Add your Annotations !");
                 stage.setScene(scene);
                 stage.show();
+                controllerAnnotations.stage = stage;
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
