@@ -1,6 +1,8 @@
 package app.workers;
 
 
+import app.beans.Annotation;
+
 /**
  * Cette interface définit les services "métier" de l'application.
  *
@@ -8,6 +10,5 @@ package app.workers;
  * @version 1.0 / date
  */
 public interface WorkerItf {
-    void loadVideo(String fileLocation);
-    void writeAnnotation(double timestampMillis, String annotation, String videoName);
+    boolean newAnnotation(Annotation newAnnotation);
 }
