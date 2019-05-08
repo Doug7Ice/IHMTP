@@ -14,12 +14,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
@@ -28,7 +24,6 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -68,6 +63,8 @@ public class Controller implements Initializable {
     public Slider sliderVolume;
     @FXML
     public Button playBtn;
+    @FXML
+    public ListView<Annotation> listViewAnnotations;
     private WorkerItf wrk;
     private ViewModel model;
     private MediaPlayer mediaPlayer;
@@ -76,6 +73,7 @@ public class Controller implements Initializable {
     private Duration duration;
     private String currentFileName;
     private ControllerAnnotations controllerAnnotations;
+    private Stage stagePopup;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -149,16 +147,19 @@ public class Controller implements Initializable {
         //Popup pour l'ajout d'annotations
         menuAnnotation.setOnAction((event) -> {
             try {
-                controllerAnnotations = new ControllerAnnotations();
-                controllerAnnotations.controller = this;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
-                loader.setController(controllerAnnotations);
-                Scene scene = new Scene(loader.load(), 600, 400);
-                stage = new Stage();
-                stage.setTitle("Add your Annotations !");
-                stage.setScene(scene);
-                stage.show();
-                controllerAnnotations.stage = stage;
+                if (controllerAnnotations == null){
+                    controllerAnnotations = new ControllerAnnotations();
+                    controllerAnnotations.controller = this;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
+                    loader.setController(controllerAnnotations);
+                    Scene scene = new Scene(loader.load(), 600, 400);
+                    stagePopup = new Stage();
+                    stagePopup.setTitle("Add your Annotations !");
+                    stagePopup.setScene(scene);
+                    controllerAnnotations.stage = stagePopup;
+                }
+                controllerAnnotations.txtTimeCode.setText(lblCurrentTime.getText());
+                stagePopup.show();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
@@ -226,6 +227,8 @@ public class Controller implements Initializable {
             mediaPlayer = new MediaPlayer(currentMedia);
             mediaView.setMediaPlayer(mediaPlayer);
             mediaPlayer.setAutoPlay(true);
+            listViewAnnotations.getItems().clear();
+            listViewAnnotations.getItems().addAll(wrk.readAnnotation("test.mp4"));
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
@@ -272,7 +275,6 @@ public class Controller implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
             try {
-                //---Open the file with associated application
                 mediaPlayer.stop();
                 Media currentMedia = new Media(selectedFile.toURI().toString());
                 mediaPlayer = new MediaPlayer(currentMedia);
@@ -280,7 +282,8 @@ public class Controller implements Initializable {
                 isBeingPlayed = true;
                 mediaPlayer.play();
                 currentFileName = selectedFile.getName();
-
+                listViewAnnotations.getItems().clear();
+                listViewAnnotations.getItems().addAll(wrk.readAnnotation(currentFileName));
                 setListenerMediaPlayer();
                 updateLblTotalDuration();
             } catch (Exception e) {
@@ -303,7 +306,12 @@ public class Controller implements Initializable {
     }
 
     public boolean newAnnotation(Annotation a){
-        return wrk.newAnnotation(a);
+        boolean ok = wrk.newAnnotation(a);
+        if(ok){
+            listViewAnnotations.getItems().clear();
+            listViewAnnotations.getItems().addAll(wrk.readAnnotation(currentFileName));
+        }
+        return ok;
     }
 }
 

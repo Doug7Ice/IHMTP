@@ -51,4 +51,9 @@ public class Annotation {
     public void setVideoName(String videoName) {
         this.videoName = videoName;
     }
+
+    @Override
+    public String toString() {
+        return timestampMillis +" : "+ text;
+    }
 }

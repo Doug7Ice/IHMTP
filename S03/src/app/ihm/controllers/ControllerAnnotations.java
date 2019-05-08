@@ -1,5 +1,6 @@
 package app.ihm.controllers;
 import app.beans.Annotation;
+import app.helpers.ViewLib;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -37,14 +38,28 @@ public class ControllerAnnotations implements Initializable {
     public void closePopup(){
         stage.close();
     }
+
     public  void saveAnnotations(){
 
-        boolean ok = controller.newAnnotation(new Annotation(txtAreaAnnotations.getText(),
-                Integer.parseInt(txtTimeScreen.getText()),
-                Double.parseDouble(txtTimeCode.getText()),
-                controller.getCurrentFileName()));
+        String stringTxtArea = txtAreaAnnotations.getText();
+        String stringTimeScreen = txtTimeScreen.getText();
+        String stringTimeCode = txtTimeCode.getText();
 
-        //TODO GESTION ERREUR
+        if(!stringTxtArea.isEmpty() && !stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty()){
+            boolean ok = controller.newAnnotation(new Annotation(stringTxtArea,
+                    Integer.parseInt(stringTimeScreen),
+                    Double.parseDouble(stringTimeCode),
+                    controller.getCurrentFileName()));
+        }
+        else if (!stringTxtArea.isEmpty() && stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty()){
+            boolean ok = controller.newAnnotation(new Annotation(stringTxtArea,
+                    Double.parseDouble(stringTimeCode),
+                    controller.getCurrentFileName()));
+        }
+        else {
+            ViewLib.displayPopup("Error","Erreur lors de la sauvegarde",
+                    "Le champ time on screen ne peut être vide");
+        }
 
         closePopup();
 
