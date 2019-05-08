@@ -2,6 +2,7 @@ package app.ihm.controllers;
 
 import app.beans.Annotation;
 import app.beans.VideoBean;
+import app.helpers.ViewLib;
 import app.ihm.models.ViewModel;
 import app.workers.Worker;
 import app.workers.WorkerItf;
@@ -11,14 +12,11 @@ import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -26,6 +24,7 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -33,7 +32,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author Anthony Alonso Lopez
+ * @author Anthony Alonso Lopez & Léo Doug Rey
  */
 public class Controller implements Initializable {
 
@@ -86,14 +85,14 @@ public class Controller implements Initializable {
         setListenerMediaPlayer();
         updateLblTotalDuration();
 
-        playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+        playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;");
 
         //Gestion du slider média
         sliderTime.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable ov) {
                 if (sliderTime.isValueChanging()) {
                     // multiply duration by percentage calculated by slider position
-                    if(duration!=null) {
+                    if (duration != null) {
                         mediaPlayer.seek(duration.multiply(sliderTime.getValue() / 100.0));
                     }
                     updateValues();
@@ -111,21 +110,19 @@ public class Controller implements Initializable {
         });
 
         //Possibilité de cliquer sur le slider pour avancer/reculer
-        sliderTime.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                sliderTime.setValueChanging(true);
-                double value = (event.getX()/sliderTime.getWidth())*sliderTime.getMax();
-                sliderTime.setValue(value);
-                sliderTime.setValueChanging(false);
-            }
-        });
+        sliderTime.setOnMouseClicked(event -> {
+                    sliderTime.setValueChanging(true);
+                    double value = (event.getX() / sliderTime.getWidth()) * sliderTime.getMax();
+                    sliderTime.setValue(value);
+                    sliderTime.setValueChanging(false);
+                }
+        );
 
 
         //Popup pour l'ajout d'annotations
-        menuAnnotation.setOnAction((event) -> {
+        menuAnnotation.setOnAction(event -> {
             try {
-                if (controllerAnnotations == null){
+                if (controllerAnnotations == null) {
                     controllerAnnotations = new ControllerAnnotations();
                     controllerAnnotations.controller = this;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
@@ -153,41 +150,50 @@ public class Controller implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("VideoBean Files", "*.mp4"));
     }
 
-    protected void updateValues(){
-        Platform.runLater(new Runnable() {
-            public void run() {
-                Duration currentTime = mediaPlayer.getCurrentTime();
-                String txt = String.format("%.2f",currentTime.toSeconds());
-                lblCurrentTime.setText(txt);
-                sliderTime.setDisable(currentTime.isUnknown());
-                if (!sliderTime.isDisabled() && duration.greaterThan(Duration.ZERO) && !sliderTime.isValueChanging()) {
-                    sliderTime.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100.0);
+    protected void updateValues() {
+
+        Platform.runLater(() -> {
+
+
+            Duration currentTime = mediaPlayer.getCurrentTime();
+            String txt = String.format("%.2f", currentTime.toSeconds());
+            lblCurrentTime.setText(txt);
+            sliderTime.setDisable(currentTime.isUnknown());
+            if (!sliderTime.isDisabled() && duration.greaterThan(Duration.ZERO) && !sliderTime.isValueChanging()) {
+                sliderTime.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100.0);
+                int indexAnnotationRunning = 0;
+                for (Annotation annotation : videoBean.getListAnnotations()){
+                    indexAnnotationRunning++;
+                    double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
+                    System.out.println(annotation.getText() + " " + delta);
+                    if (delta < 0.5 && delta > -0.5) {
+                        ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
+                    }
                 }
-                if (!sliderVolume.isValueChanging()) {
-                    sliderVolume.setValue((int) Math.round(mediaPlayer.getVolume() * 100));
-                }
+            }
+            if (!sliderVolume.isValueChanging()) {
+                sliderVolume.setValue((int) Math.round(mediaPlayer.getVolume() * 100));
             }
         });
     }
 
-    private void changeStyleButtonPlayPause(){
-        if (isBeingPlayed){
-            playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
-        }
-        else {
-            playBtn.setStyle("-fx-background-image: url(ressources/images/play-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+    private void changeStyleButtonPlayPause() {
+        if (isBeingPlayed) {
+            playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;");
+        } else {
+            playBtn.setStyle("-fx-background-image: url(ressources/images/play-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;");
         }
 
     }
 
-    private void updateLblTotalDuration(){
+    private void updateLblTotalDuration() {
         mediaPlayer.setOnReady(new Runnable() {
             @Override
             public void run() {
                 duration = mediaPlayer.getTotalDuration();
                 Double a = duration.toSeconds();
-                String txt = String.format("%.2f",a);
-                lblTime.setText("/"+txt);
+                String txt = String.format("%.2f", a);
+                lblTime.setText("/" + txt);
                 videoBean.setLenght(a);
             }
         });
@@ -205,7 +211,7 @@ public class Controller implements Initializable {
             mediaPlayer = new MediaPlayer(currentMedia);
             mediaView.setMediaPlayer(mediaPlayer);
             mediaPlayer.setAutoPlay(true);
-            videoBean = new VideoBean("test.mp4",wrk.readAnnotation("test.mp4"));
+            videoBean = new VideoBean("test.mp4", wrk.readAnnotation("test.mp4"));
             updateListView();
 
         } catch (IOException ioe) {
@@ -220,33 +226,31 @@ public class Controller implements Initializable {
 
     public void quitter() {
         System.out.println("app is closing !");
-        if(controllerAnnotations != null){
+        if (controllerAnnotations != null) {
             controllerAnnotations.stage.close();
         }
         stage.close();
     }
 
-    public void save(){
+    public void save() {
         System.out.println("Heu... Hehe c'est embarrassant.........");
     }
 
-    public void setFullscreen(){
+    public void setFullscreen() {
         stage.setFullScreen(true);
     }
 
-    public void resume(){
+    public void resume() {
         Duration tempActuel = mediaPlayer.getCurrentTime();
         Duration tempTotal = mediaPlayer.getTotalDuration();
         System.out.println();
-        if (isBeingPlayed && !tempActuel.equals(tempTotal)){
+        if (isBeingPlayed && !tempActuel.equals(tempTotal)) {
             mediaPlayer.pause();
             isBeingPlayed = false;
             changeStyleButtonPlayPause();
-        }
-        else if (tempActuel.equals(tempTotal)){
+        } else if (tempActuel.equals(tempTotal)) {
             mediaPlayer.seek(new Duration(0));
-        }
-        else {
+        } else {
             mediaPlayer.play();
             isBeingPlayed = true;
             changeStyleButtonPlayPause();
@@ -265,7 +269,7 @@ public class Controller implements Initializable {
                 mediaView.setMediaPlayer(mediaPlayer);
                 isBeingPlayed = true;
                 mediaPlayer.play();
-                videoBean = new VideoBean(selectedFile.getName(),wrk.readAnnotation(selectedFile.getName()));
+                videoBean = new VideoBean(selectedFile.getName(), wrk.readAnnotation(selectedFile.getName()));
                 updateListView();
                 setListenerMediaPlayer();
                 updateLblTotalDuration();
@@ -284,16 +288,16 @@ public class Controller implements Initializable {
         });
     }
 
-    public boolean newAnnotation(Annotation a){
+    public boolean newAnnotation(Annotation a) {
         boolean ok = wrk.newAnnotation(a);
-        if(ok){
+        if (ok) {
             listViewAnnotations.getItems().clear();
             listViewAnnotations.getItems().addAll(wrk.readAnnotation(videoBean.getTitle()));
         }
         return ok;
     }
 
-    public VideoBean getVideoBean(){
+    public VideoBean getVideoBean() {
         return videoBean;
     }
 }
