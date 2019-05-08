@@ -45,23 +45,25 @@ public class ControllerAnnotations implements Initializable {
         String stringTimeScreen = txtTimeScreen.getText();
         String stringTimeCode = txtTimeCode.getText();
 
-        if(!stringTxtArea.isEmpty() && !stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty()){
+        if(!stringTxtArea.isEmpty() && !stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty() && controller.getVideoBean().getLenght() >= Double.parseDouble(stringTimeCode)){
             boolean ok = controller.newAnnotation(new Annotation(stringTxtArea,
                     Integer.parseInt(stringTimeScreen),
                     Double.parseDouble(stringTimeCode),
-                    controller.getCurrentFileName()));
+                    controller.getVideoBean().getTitle()));
+            closePopup();
         }
-        else if (!stringTxtArea.isEmpty() && stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty()){
+        else if (!stringTxtArea.isEmpty() && stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty() && controller.getVideoBean().getLenght() >= Double.parseDouble(stringTimeCode)){
             boolean ok = controller.newAnnotation(new Annotation(stringTxtArea,
                     Double.parseDouble(stringTimeCode),
-                    controller.getCurrentFileName()));
+                    controller.getVideoBean().getTitle()));
+            closePopup();
         }
         else {
             ViewLib.displayPopup("Error","Erreur lors de la sauvegarde",
-                    "Le champ time on screen ne peut être vide");
+                    "Le champ time on screen ne peut être vide ou la notatation est hors durée");
         }
 
-        closePopup();
+
 
     }
 

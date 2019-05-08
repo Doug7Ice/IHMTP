@@ -1,6 +1,7 @@
 package app.ihm.controllers;
 
 import app.beans.Annotation;
+import app.beans.VideoBean;
 import app.ihm.models.ViewModel;
 import app.workers.Worker;
 import app.workers.WorkerItf;
@@ -16,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
@@ -71,9 +73,9 @@ public class Controller implements Initializable {
     private FileChooser fileChooser;
     private boolean isBeingPlayed;
     private Duration duration;
-    private String currentFileName;
     private ControllerAnnotations controllerAnnotations;
     private Stage stagePopup;
+    private VideoBean videoBean;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,31 +101,6 @@ public class Controller implements Initializable {
             }
         });
 
-        //================ TEST ANTHO
-        sliderTime.setMajorTickUnit(5);
-        sliderTime.setMinorTickCount(0);
-        sliderTime.setShowTickMarks(true);
-        sliderTime.setShowTickLabels(true);
-        sliderTime.setSnapToTicks(true);
-        sliderTime.setMinHeight(Slider.USE_PREF_SIZE);
-
-        /*/NumberAxis axis = (NumberAxis) sliderTime.lookup(".axis");
-        Bounds bounds = axis.localToScene(axis.getBoundsInLocal());
-
-        double x = axis.getDisplayPosition(14);
-        x += axis.getLayoutX() + bounds.getMinX();
-
-        line = new Line(x,0,x,100);
-        line.getStyleClass().clear();
-        line.getStyleClass().add("multi_graph_scribe");
-        glassPane.getChildren().add(line);
-        if(!line.isVisible())
-            line.setVisible(true);*/
-
-        //================ FIN TEST ANTHO
-
-
-
         //Gestion du slider volume
         sliderVolume.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable ov) {
@@ -143,6 +120,7 @@ public class Controller implements Initializable {
                 sliderTime.setValueChanging(false);
             }
         });
+
 
         //Popup pour l'ajout d'annotations
         menuAnnotation.setOnAction((event) -> {
@@ -172,7 +150,7 @@ public class Controller implements Initializable {
         fileChooser.setTitle("FileChooserExample");
         File homeDir = new File(System.getProperty("user.home"));
         fileChooser.setInitialDirectory(homeDir);
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("VideoBean Files", "*.mp4"));
     }
 
     protected void updateValues(){
@@ -210,6 +188,7 @@ public class Controller implements Initializable {
                 Double a = duration.toSeconds();
                 String txt = String.format("%.2f",a);
                 lblTime.setText("/"+txt);
+                videoBean.setLenght(a);
             }
         });
     }
@@ -219,7 +198,6 @@ public class Controller implements Initializable {
         try {
             isBeingPlayed = true;
             File video = new File("src/ressources/test.mp4").getCanonicalFile();
-            currentFileName = "test.mp4";
             URI a = video.toURI();
             String b = a.toString();
             System.out.println(b);
@@ -227,11 +205,17 @@ public class Controller implements Initializable {
             mediaPlayer = new MediaPlayer(currentMedia);
             mediaView.setMediaPlayer(mediaPlayer);
             mediaPlayer.setAutoPlay(true);
-            listViewAnnotations.getItems().clear();
-            listViewAnnotations.getItems().addAll(wrk.readAnnotation("test.mp4"));
+            videoBean = new VideoBean("test.mp4",wrk.readAnnotation("test.mp4"));
+            updateListView();
+
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
+    }
+
+    private void updateListView() {
+        listViewAnnotations.getItems().clear();
+        listViewAnnotations.getItems().addAll(videoBean.getListAnnotations());
     }
 
     public void quitter() {
@@ -281,9 +265,8 @@ public class Controller implements Initializable {
                 mediaView.setMediaPlayer(mediaPlayer);
                 isBeingPlayed = true;
                 mediaPlayer.play();
-                currentFileName = selectedFile.getName();
-                listViewAnnotations.getItems().clear();
-                listViewAnnotations.getItems().addAll(wrk.readAnnotation(currentFileName));
+                videoBean = new VideoBean(selectedFile.getName(),wrk.readAnnotation(selectedFile.getName()));
+                updateListView();
                 setListenerMediaPlayer();
                 updateLblTotalDuration();
             } catch (Exception e) {
@@ -301,17 +284,17 @@ public class Controller implements Initializable {
         });
     }
 
-    public String getCurrentFileName() {
-        return currentFileName;
-    }
-
     public boolean newAnnotation(Annotation a){
         boolean ok = wrk.newAnnotation(a);
         if(ok){
             listViewAnnotations.getItems().clear();
-            listViewAnnotations.getItems().addAll(wrk.readAnnotation(currentFileName));
+            listViewAnnotations.getItems().addAll(wrk.readAnnotation(videoBean.getTitle()));
         }
         return ok;
+    }
+
+    public VideoBean getVideoBean(){
+        return videoBean;
     }
 }
 

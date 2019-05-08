@@ -34,7 +34,6 @@ public class Main extends Application {
         Controller ctrl = loader.getController();
         ctrl.stage = stage;
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.setTitle("Groupe 3 - Série 3: Lecteur et Annnotateur Multimedia");
         stage.show();

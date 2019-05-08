@@ -14,4 +14,6 @@ import java.util.ArrayList;
 public interface WorkerItf {
     boolean newAnnotation(Annotation newAnnotation);
     ArrayList<Annotation> readAnnotation(String videoName);
+    boolean writeAnnotations(ArrayList<Annotation> list);
+    void eraseAnnotation(String videoName);
 }

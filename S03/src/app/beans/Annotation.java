@@ -1,11 +1,23 @@
 package app.beans;
 
+/**
+ * This beans contains an Annotation
+ * @author anthonyc.alonsolo
+ * @version 1.0.0
+ */
 public class Annotation {
     private String text;
     private int duration;
     private double timestampMillis;
     private String videoName;
 
+    /**
+     * This is the main Constructor
+     * @param text your annotation
+     * @param duration
+     * @param timestampMillis
+     * @param videoName
+     */
     public Annotation(String text, int duration, double timestampMillis, String videoName) {
         this.text = text;
         this.duration = duration;
@@ -13,6 +25,12 @@ public class Annotation {
         this.videoName = videoName;
     }
 
+    /**
+     * This constructor dont need duration because it's automatically set to 5000
+     * @param text your annotation
+     * @param timestampMillis
+     * @param videoName
+     */
     public Annotation(String text, double timestampMillis, String videoName) {
         this.text = text;
         this.duration = 5000;
