@@ -35,6 +35,9 @@ public class Worker implements WorkerItf {
      */
     public boolean newAnnotation(Annotation newAnnotation) {
         ArrayList<Annotation> listOfAnnotation = readAnnotation(newAnnotation.getVideoName());
+        if (listOfAnnotation==null){
+            listOfAnnotation = new ArrayList<>();
+        }
         listOfAnnotation.add(newAnnotation);
         return writeAnnotations(listOfAnnotation);
     }

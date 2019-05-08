@@ -11,6 +11,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -221,7 +223,20 @@ public class Controller implements Initializable {
 
     private void updateListView() {
         listViewAnnotations.getItems().clear();
-        listViewAnnotations.getItems().addAll(videoBean.getListAnnotations());
+        if(videoBean!= null && videoBean.getListAnnotations()!= null){
+            listViewAnnotations.getItems().addAll(videoBean.getListAnnotations());
+        }
+
+    }
+
+    public void removeAnnotation(){
+        wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
+        ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
+        ArrayList<Annotation> arrayListAnnotation = new ArrayList<>();
+        arrayListAnnotation.addAll(arrayAnnotationTemp);
+        arrayListAnnotation.remove(listViewAnnotations.getSelectionModel().getSelectedItem());
+        wrk.writeAnnotations((arrayListAnnotation));
+        updateListView();
     }
 
     public void quitter() {
