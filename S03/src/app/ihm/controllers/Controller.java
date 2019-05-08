@@ -1,5 +1,6 @@
 package app.ihm.controllers;
 
+import app.beans.Annotation;
 import app.ihm.models.ViewModel;
 import app.workers.Worker;
 import app.workers.WorkerItf;
@@ -73,6 +74,8 @@ public class Controller implements Initializable {
     private FileChooser fileChooser;
     private boolean isBeingPlayed;
     private Duration duration;
+    private String currentFileName;
+    private ControllerAnnotations controllerAnnotations;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,7 +86,7 @@ public class Controller implements Initializable {
         setListenerMediaPlayer();
         updateLblTotalDuration();
 
-        playBtn.setStyle("-fx-background-image: url(ressources/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+        playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
 
         //Gestion du slider média
         sliderTime.valueProperty().addListener(new InvalidationListener() {
@@ -146,11 +149,12 @@ public class Controller implements Initializable {
         //Popup pour l'ajout d'annotations
         menuAnnotation.setOnAction((event) -> {
             try {
-                ControllerAnnotations controllerAnnotations = new ControllerAnnotations();
+                controllerAnnotations = new ControllerAnnotations();
+                controllerAnnotations.controller = this;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
                 loader.setController(controllerAnnotations);
                 Scene scene = new Scene(loader.load(), 600, 400);
-                Stage stage = new Stage();
+                stage = new Stage();
                 stage.setTitle("Add your Annotations !");
                 stage.setScene(scene);
                 stage.show();
@@ -189,10 +193,10 @@ public class Controller implements Initializable {
 
     private void changeStyleButtonPlayPause(){
         if (isBeingPlayed){
-            playBtn.setStyle("-fx-background-image: url(ressources/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+            playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
         }
         else {
-            playBtn.setStyle("-fx-background-image: url(ressources/play-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
+            playBtn.setStyle("-fx-background-image: url(ressources/images/play-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;") ;
         }
 
     }
@@ -214,6 +218,7 @@ public class Controller implements Initializable {
         try {
             isBeingPlayed = true;
             File video = new File("src/ressources/test.mp4").getCanonicalFile();
+            currentFileName = "test.mp4";
             URI a = video.toURI();
             String b = a.toString();
             System.out.println(b);
@@ -228,7 +233,10 @@ public class Controller implements Initializable {
 
     public void quitter() {
         System.out.println("app is closing !");
-        System.exit(0);
+        if(controllerAnnotations != null){
+            controllerAnnotations.stage.close();
+        }
+        stage.close();
     }
 
     public void save(){
@@ -271,6 +279,8 @@ public class Controller implements Initializable {
                 mediaView.setMediaPlayer(mediaPlayer);
                 isBeingPlayed = true;
                 mediaPlayer.play();
+                currentFileName = selectedFile.getName();
+
                 setListenerMediaPlayer();
                 updateLblTotalDuration();
             } catch (Exception e) {
@@ -279,7 +289,6 @@ public class Controller implements Initializable {
         }
     }
 
-
     private void setListenerMediaPlayer() {
         mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
             @Override
@@ -287,6 +296,14 @@ public class Controller implements Initializable {
                 updateValues();
             }
         });
+    }
+
+    public String getCurrentFileName() {
+        return currentFileName;
+    }
+
+    public boolean newAnnotation(Annotation a){
+        return wrk.newAnnotation(a);
     }
 }
 

@@ -1,4 +1,5 @@
 package app.ihm.controllers;
+import app.beans.Annotation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +26,7 @@ public class ControllerAnnotations implements Initializable {
     @FXML
     public TextArea txtAreaAnnotations;
     public Stage stage;
+    public Controller controller;
 
 
     @Override
@@ -36,8 +38,14 @@ public class ControllerAnnotations implements Initializable {
         stage.close();
     }
     public  void saveAnnotations(){
-        System.out.println("HAHAHH");
-        System.out.printf(txtTimeCode.getText());
+
+        boolean ok = controller.newAnnotation(new Annotation(txtAreaAnnotations.getText(),
+                Integer.parseInt(txtTimeScreen.getText()),
+                Double.parseDouble(txtTimeCode.getText()),
+                controller.getCurrentFileName()));
+
+        //TODO GESTION ERREUR
+
         closePopup();
 
     }

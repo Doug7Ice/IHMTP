@@ -92,7 +92,7 @@
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../ressources/volume.png" />
+                              <Image url="@../../../ressources/images/volume.png" />
                            </image>
                            <HBox.margin>
                               <Insets />

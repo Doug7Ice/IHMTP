@@ -43,8 +43,12 @@ public class Main extends Application {
             if (popup.showAndWait().get() != ButtonType.OK) {
                 event.consume();
             }
+            else {
+                ctrl.quitter();
+            }
         });
         ///ctrl.setFullscreen();
+        //Annotation a = new Annotation();
     }
 
 }
