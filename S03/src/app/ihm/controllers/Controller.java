@@ -2,6 +2,7 @@ package app.ihm.controllers;
 
 import app.beans.Annotation;
 import app.beans.VideoBean;
+import app.helpers.ActiveDirectory;
 import app.helpers.ViewLib;
 import app.ihm.models.ViewModel;
 import app.workers.Worker;
@@ -16,7 +17,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -25,6 +33,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -80,7 +89,6 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         wrk = new Worker();
         intiTestVideo();
-        //wrk.writeAnnotation(5000,"asdasd","asdasdasdasd");
         initFileChooser();
         setListenerMediaPlayer();
         updateLblTotalDuration();
@@ -162,10 +170,9 @@ public class Controller implements Initializable {
             if (!sliderTime.isDisabled() && duration.greaterThan(Duration.ZERO) && !sliderTime.isValueChanging()) {
                 sliderTime.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100.0);
                 int indexAnnotationRunning = 0;
-                for (Annotation annotation : videoBean.getListAnnotations()){
+                for (Annotation annotation : videoBean.getListAnnotations()) {
                     indexAnnotationRunning++;
                     double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
-                    System.out.println(annotation.getText() + " " + delta);
                     if (delta < 0.5 && delta > -0.5) {
                         ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
                     }
@@ -260,7 +267,10 @@ public class Controller implements Initializable {
     public void openFile(ActionEvent actionEvent) {
         mediaPlayer.pause();
         isBeingPlayed = false;
-        File selectedFile = fileChooser.showOpenDialog(stage);
+        openFile(fileChooser.showOpenDialog(stage));
+    }
+
+    public void openFile(File selectedFile) {
         if (selectedFile != null) {
             try {
                 mediaPlayer.stop();
@@ -270,6 +280,25 @@ public class Controller implements Initializable {
                 isBeingPlayed = true;
                 mediaPlayer.play();
                 videoBean = new VideoBean(selectedFile.getName(), wrk.readAnnotation(selectedFile.getName()));
+                updateListView();
+                setListenerMediaPlayer();
+                updateLblTotalDuration();
+            } catch (Exception e) {
+                System.err.println("ERROR: Unable to open the file");
+            }
+        }
+    }
+    public void openURL(String selectedFile) {
+        if (selectedFile != null) {
+            try {
+                mediaPlayer.stop();
+                System.out.println(selectedFile);
+                Media currentMedia = new Media(selectedFile);
+                mediaPlayer = new MediaPlayer(currentMedia);
+                mediaView.setMediaPlayer(mediaPlayer);
+                isBeingPlayed = true;
+                mediaPlayer.play();
+                videoBean = new VideoBean(selectedFile, wrk.readAnnotation(selectedFile));
                 updateListView();
                 setListenerMediaPlayer();
                 updateLblTotalDuration();
@@ -291,10 +320,37 @@ public class Controller implements Initializable {
     public boolean newAnnotation(Annotation a) {
         boolean ok = wrk.newAnnotation(a);
         if (ok) {
+            ViewLib.WindowsNotification("Annotation ajoutée !", "Vidéo : " + a.getVideoName() + " texte : " + a.getText(), TrayIcon.MessageType.INFO, null);
             listViewAnnotations.getItems().clear();
             listViewAnnotations.getItems().addAll(wrk.readAnnotation(videoBean.getTitle()));
         }
         return ok;
+    }
+
+    @FXML
+    private void dragAndDrop(DragEvent dragEvent) {
+        Dragboard db = dragEvent.getDragboard();
+        boolean success = false;
+        if (db.hasFiles()) {
+            openFile(db.getFiles().get(0));
+            success = true;
+        }else if (db.hasString()){
+            openURL(db.getString());
+            success = true;
+        }
+        dragEvent.setDropCompleted(success);
+        dragEvent.consume();
+    }
+
+    @FXML
+    private void PrepareDragAndDrop(DragEvent dragEvent) {
+        Dragboard db = dragEvent.getDragboard();
+        if (db.hasFiles()) {
+            dragEvent.acceptTransferModes(TransferMode.MOVE);
+        }else if (db.hasString()){
+            dragEvent.acceptTransferModes(TransferMode.MOVE);
+        }
+        dragEvent.consume();
     }
 
     public VideoBean getVideoBean() {
