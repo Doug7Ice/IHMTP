@@ -237,6 +237,7 @@ public class Controller implements Initializable {
     }
 
     public void removeAnnotation(){
+        mediaPlayer.pause();
         wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
         ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
         ArrayList<Annotation> arrayListAnnotation = new ArrayList<>();
@@ -244,6 +245,7 @@ public class Controller implements Initializable {
         arrayListAnnotation.remove(listViewAnnotations.getSelectionModel().getSelectedItem());
         wrk.writeAnnotations((arrayListAnnotation));
         updateListView();
+        mediaPlayer.play();
     }
 
     public void quitter() {
