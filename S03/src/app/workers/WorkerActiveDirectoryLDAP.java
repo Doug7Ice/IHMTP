@@ -1,4 +1,4 @@
-package app.helpers;
+package app.workers;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -6,25 +6,36 @@ import javax.naming.NamingException;
 import javax.naming.directory.*;
 import java.util.Hashtable;
 
-public class ActiveDirectory {
+/**
+ * Oui je me suis fait chier...
+ *
+ * @author anthonyc.alonsolo
+ */
+public class WorkerActiveDirectoryLDAP {
     static DirContext ldapContext;
 
-    public static void main(String[] args) throws NamingException {
+    public static void testConntection() {
         try {
-            System.out.println("Début du test Active Directory");
+            connectToDirectory("ldap://ldap.forumsys.com:389", "simple", "read-only-admin", "example.com", "password");
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
 
-            Hashtable<String, String> ldapEnv = new Hashtable<String, String>(11);
-            ldapEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-            //ldapEnv.put(Context.PROVIDER_URL,  "ldap://societe.fr:389");
-            ldapEnv.put(Context.PROVIDER_URL, "ldap://ldap.forumsys.com:389");
-            ldapEnv.put(Context.SECURITY_AUTHENTICATION, "simple");
-            //ldapEnv.put(Context.SECURITY_PRINCIPAL, "cn=administrateur,cn=users,dc=societe,dc=fr");
-            ldapEnv.put(Context.SECURITY_PRINCIPAL, "cn=read-only-admin,dc=example,dc=com");
-            ldapEnv.put(Context.SECURITY_CREDENTIALS, "password");
-            //ldapEnv.put(Context.SECURITY_PROTOCOL, "ssl");
-            //ldapEnv.put(Context.SECURITY_PROTOCOL, "simple");
-            ldapContext = new InitialDirContext(ldapEnv);
+        }
 
+    }
+
+    public static void connectToDirectory(String urlProvider, String authentification, String CNuserConnect, String directory, String password) throws NamingException {
+        Hashtable<String, String> ldapEnv = new Hashtable<String, String>(11);
+        ldapEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+        ldapEnv.put(Context.PROVIDER_URL, urlProvider);
+        ldapEnv.put(Context.SECURITY_AUTHENTICATION, authentification);
+        ldapEnv.put(Context.SECURITY_PRINCIPAL, "cn=" + CNuserConnect + ",dc=" + directory.split(".")[0] + ",dc=" + directory.split(".")[1]);
+        ldapEnv.put(Context.SECURITY_CREDENTIALS, password);
+        ldapContext = new InitialDirContext(ldapEnv);
+    }
+
+    public static Attributes askDirectory() {
+        try {
             // Create the search controls
             SearchControls searchCtls = new SearchControls();
 
@@ -42,7 +53,7 @@ public class ActiveDirectory {
             String searchBase = "dc=example,dc=com";
             //initialize counter to total the results
             int totalResults = 0;
-            System.out.println("Je cherche : "+returnedAtts[0]+" | de : " +searchFilter+ " | Sur l'annuaire : " + searchBase);
+            System.out.println("Je cherche : " + returnedAtts[0] + " | de : " + searchFilter + " | Sur l'annuaire : " + searchBase);
             // Search for objects using the filter
             NamingEnumeration<SearchResult> answer = ldapContext.search(searchBase, searchFilter, searchCtls);
 
@@ -53,7 +64,7 @@ public class ActiveDirectory {
                 totalResults++;
 
                 System.out.println(">>>" + sr.getName());
-                Attributes attrs = sr.getAttributes();
+                Attributes < = sr.getAttributes();
                 System.out.println(">>>>>>" + attrs.get("cn"));
             }
 
@@ -63,6 +74,8 @@ public class ActiveDirectory {
             System.out.println(" Search error: " + e);
             e.printStackTrace();
             System.exit(-1);
+
         }
+        return
     }
 }
