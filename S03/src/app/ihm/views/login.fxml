@@ -9,12 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <HBox prefHeight="33.0" prefWidth="482.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnCancelLogin" cancelButton="true" mnemonicParsing="false" onAction="#quitter" prefHeight="25.0" prefWidth="73.0" text="Cancel" textAlignment="JUSTIFY" />
+            <Button fx:id="btnCancelLogin" cancelButton="true" mnemonicParsing="false" onAction="#quitter" prefHeight="25.0" prefWidth="65.0" text="Cancel" textAlignment="JUSTIFY" />
             <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="67.0" text="Login" />
+            <Button fx:id="btnGuest" mnemonicParsing="false" onAction="#loginGuest" text="Guest" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -49,7 +50,7 @@
                         <Insets left="20.0" top="2.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtTimeScreen" prefHeight="25.0" prefWidth="247.0" />
+                  <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="247.0" />
                </children>
             </HBox>
          </children>

@@ -78,6 +78,8 @@ public class Controller implements Initializable {
     public Button playBtn;
     @FXML
     public ListView<Annotation> listViewAnnotations;
+    @FXML
+    public MenuItem menuDelete;
     private WorkerItf wrk;
     private ViewModel model;
     private MediaPlayer mediaPlayer;
@@ -165,6 +167,7 @@ public class Controller implements Initializable {
         initFileChooser();
         setListenerMediaPlayer();
         updateLblTotalDuration();
+        stageLogin.close();
     }
 
     private void launchPopupLogin() throws Exception{
@@ -401,6 +404,12 @@ public class Controller implements Initializable {
 
     public VideoBean getVideoBean() {
         return videoBean;
+    }
+
+    public void unableAnnotation() {
+        //TODO
+        menuAnnotation.setDisable(true);
+        menuDelete.setDisable(true);
     }
 }
 
