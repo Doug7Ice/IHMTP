@@ -41,6 +41,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author Anthony Alonso Lopez & Léo Doug Rey
@@ -85,15 +86,13 @@ public class Controller implements Initializable {
     private Duration duration;
     private ControllerAnnotations controllerAnnotations;
     private Stage stagePopup;
+    private Stage stageLogin;
     private VideoBean videoBean;
+    private ControllerLogin controllerLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         wrk = new Worker();
-        intiTestVideo();
-        initFileChooser();
-        setListenerMediaPlayer();
-        updateLblTotalDuration();
 
         playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;");
 
@@ -150,7 +149,37 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        //Affiche une page de login;
+        try {
+            launchPopupLogin();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
+
+    public void launchProfIHM() {
+        intiTestVideo();
+        initFileChooser();
+        setListenerMediaPlayer();
+        updateLblTotalDuration();
+    }
+
+    private void launchPopupLogin() throws Exception{
+        controllerLogin = new ControllerLogin();
+        controllerLogin.mainCtrl = this;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/login.fxml"));
+        loader.setController(controllerLogin);
+        Scene scene = new Scene(loader.load(), 600, 400);
+        stageLogin = new Stage();
+        stageLogin.setTitle("Login");
+        stageLogin.setScene(scene);
+        stageLogin.setAlwaysOnTop(true);
+        stageLogin.show();
+    }
+
 
     private void initFileChooser() {
         fileChooser = new FileChooser();

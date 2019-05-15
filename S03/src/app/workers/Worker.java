@@ -67,6 +67,11 @@ public class Worker implements WorkerItf {
         }}, jsonLocation, videoName + ".json");
     }
 
+    @Override
+    public boolean checkLogin(String email) {
+        return email.equals("leodoug.rey@edu.hefr.ch");
+    }
+
     /**
      * This method write an ArrayList of Annotation to json (videoname.json)
      * @param list your arrayList of annotation

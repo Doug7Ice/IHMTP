@@ -16,4 +16,5 @@ public interface WorkerItf {
     ArrayList<Annotation> readAnnotation(String videoName);
     boolean writeAnnotations(ArrayList<Annotation> list);
     void eraseAnnotation(String videoName);
+    boolean checkLogin(String email);
 }
