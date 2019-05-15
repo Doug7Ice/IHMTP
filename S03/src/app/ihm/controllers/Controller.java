@@ -407,7 +407,6 @@ public class Controller implements Initializable {
     }
 
     public void unableAnnotation() {
-        //TODO
         menuAnnotation.setDisable(true);
         menuDelete.setDisable(true);
     }
