@@ -128,7 +128,11 @@ public class ViewLib {
                     fadeOutTimeline.getKeyFrames().add(fadeOutKey1);
                     fadeOutTimeline.setOnFinished((aeb) -> toastStage.close());
                     fadeOutTimeline.play();
-                    toastStage.close();
+                    try {
+                        toastStage.close();
+                    }catch (IllegalStateException e){
+
+                    }
                 }).start();
             });
             fadeInTimeline.play();
