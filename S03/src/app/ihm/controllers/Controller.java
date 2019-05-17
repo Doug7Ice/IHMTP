@@ -408,6 +408,7 @@ public class Controller implements Initializable {
             ViewLib.WindowsNotification("Annotation ajoutée !", "Vidéo : " + a.getVideoName() + " texte : " + a.getText(), TrayIcon.MessageType.INFO, null);
             listViewAnnotations.getItems().clear();
             listViewAnnotations.getItems().addAll(wrk.readAnnotation(videoBean.getTitle()));
+            videoBean.setListAnnotations(wrk.readAnnotation(videoBean.getTitle()));
         }
         return ok;
     }
