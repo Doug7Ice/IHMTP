@@ -286,7 +286,7 @@ public class Controller implements Initializable {
 
     public void removeAnnotation(){
         if (listViewAnnotations.getItems().size() > 0){
-            mediaPlayer.pause();
+            setVideoState(false);
             wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
             ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
             ArrayList<Annotation> arrayListAnnotation = new ArrayList<>();
@@ -303,7 +303,7 @@ public class Controller implements Initializable {
 
 
             updateListView();
-            mediaPlayer.play();
+            setVideoState(true);
         }
     }
 
@@ -331,21 +331,18 @@ public class Controller implements Initializable {
         Duration tempTotal = mediaPlayer.getTotalDuration();
         System.out.println();
         if (isBeingPlayed && !tempActuel.equals(tempTotal)) {
-            mediaPlayer.pause();
-            isBeingPlayed = false;
+            setVideoState(false);
             changeStyleButtonPlayPause();
         } else if (tempActuel.equals(tempTotal)) {
             mediaPlayer.seek(new Duration(0));
         } else {
-            mediaPlayer.play();
-            isBeingPlayed = true;
+            setVideoState(true);
             changeStyleButtonPlayPause();
         }
     }
 
     public void openFile(ActionEvent actionEvent) {
-        mediaPlayer.pause();
-        isBeingPlayed = false;
+        setVideoState(false);
         openFile(fileChooser.showOpenDialog(stage));
     }
 
@@ -356,8 +353,7 @@ public class Controller implements Initializable {
                 Media currentMedia = new Media(selectedFile.toURI().toString());
                 mediaPlayer = new MediaPlayer(currentMedia);
                 mediaView.setMediaPlayer(mediaPlayer);
-                isBeingPlayed = true;
-                mediaPlayer.play();
+                setVideoState(true);
                 videoBean = new VideoBean(selectedFile.getName(), wrk.readAnnotation(selectedFile.getName()));
                 updateListView();
                 setListenerMediaPlayer();
@@ -376,8 +372,7 @@ public class Controller implements Initializable {
                 Media currentMedia = new Media(selectedFile);
                 mediaPlayer = new MediaPlayer(currentMedia);
                 mediaView.setMediaPlayer(mediaPlayer);
-                isBeingPlayed = true;
-                mediaPlayer.play();
+                setVideoState(true);
                 videoBean = new VideoBean(selectedFile, wrk.readAnnotation(selectedFile));
                 updateListView();
                 setListenerMediaPlayer();
@@ -445,8 +440,10 @@ public class Controller implements Initializable {
     public void setVideoState(boolean play) {
         if (play) {
             mediaPlayer.play();
+            isBeingPlayed = true;
         } else {
             mediaPlayer.pause();
+            isBeingPlayed = false;
         }
 
     }
