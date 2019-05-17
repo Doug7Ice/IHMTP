@@ -194,8 +194,7 @@ public class Controller implements Initializable {
             Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
             if (popup.showAndWait().get() != ButtonType.OK) {
                 event.consume();
-            }
-            else {
+            } else {
                 this.quitter();
             }
         });
@@ -217,7 +216,6 @@ public class Controller implements Initializable {
     }
 
     protected void updateValues() {
-
         Platform.runLater(() -> {
             Duration currentTime = mediaPlayer.getCurrentTime();
             String txt = String.format("%.2f", currentTime.toSeconds());
@@ -228,13 +226,12 @@ public class Controller implements Initializable {
                 if (videoBean != null || videoBean.getListAnnotations() != null || !videoBean.getListAnnotations().isEmpty()) {
                     for (Annotation annotation : videoBean.getListAnnotations()) {
                         if (annotation == null || videoBean == null || videoBean.getListAnnotations() == null || videoBean.getListAnnotations().isEmpty()) {
-                        break;
+                            break;
                         }
                         double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
                         if (delta < 0.5 && delta > -0.5) {
                             ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
                         }
-
                     }
                 }
             }
@@ -295,8 +292,8 @@ public class Controller implements Initializable {
 
     }
 
-    public void removeAnnotation(){
-        if (listViewAnnotations.getItems().size() > 0){
+    public void removeAnnotation() {
+        if (listViewAnnotations.getItems().size() > 0) {
             setVideoState(false);
             wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
             ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
