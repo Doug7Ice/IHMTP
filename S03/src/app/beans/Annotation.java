@@ -25,6 +25,10 @@ public class Annotation {
         this.videoName = videoName;
     }
 
+    public Annotation(String videoName){
+        this.videoName = videoName;
+    }
+
     /**
      * This constructor dont need duration because it's automatically set to 5000
      * @param text your annotation

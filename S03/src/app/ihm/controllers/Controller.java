@@ -277,7 +277,16 @@ public class Controller implements Initializable {
             ArrayList<Annotation> arrayListAnnotation = new ArrayList<>();
             arrayListAnnotation.addAll(arrayAnnotationTemp);
             arrayListAnnotation.remove(listViewAnnotations.getSelectionModel().getSelectedItem());
-            wrk.writeAnnotations((arrayListAnnotation));
+
+            if (!arrayListAnnotation.isEmpty()){
+                wrk.writeAnnotations((arrayListAnnotation));
+            }
+            else {
+                arrayListAnnotation.add(new Annotation(videoBean.getTitle()));
+                wrk.writeAnnotations((arrayListAnnotation));
+            }
+
+
             updateListView();
             mediaPlayer.play();
         }
