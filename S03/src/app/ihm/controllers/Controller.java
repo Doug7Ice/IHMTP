@@ -120,6 +120,15 @@ public class Controller implements Initializable {
             }
         });
 
+        //Possibilité de cliquer sur le slider pour changer le volume
+        sliderVolume.setOnMouseClicked(event -> {
+                    sliderVolume.setValueChanging(true);
+                    double value = (event.getX() / sliderVolume.getWidth()) * sliderVolume.getMax();
+                    sliderVolume.setValue(value);
+                    sliderVolume.setValueChanging(false);
+                }
+        );
+
         //Possibilité de cliquer sur le slider pour avancer/reculer
         sliderTime.setOnMouseClicked(event -> {
                     sliderTime.setValueChanging(true);
