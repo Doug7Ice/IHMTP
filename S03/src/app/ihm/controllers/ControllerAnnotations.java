@@ -1,6 +1,7 @@
 package app.ihm.controllers;
 import app.beans.Annotation;
 import app.helpers.ViewLib;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,10 +33,16 @@ public class ControllerAnnotations implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        txtTimeScreen.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue,
+                                                  String newValue) -> {
+            if (!newValue.matches("([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|100000)")); {
+                txtTimeScreen.clear();
+            }
+        });
     }
 
     public void closePopup(){
+        controller.setVideoState(true);
         stage.close();
     }
 
@@ -43,7 +50,7 @@ public class ControllerAnnotations implements Initializable {
 
         String stringTxtArea = txtAreaAnnotations.getText();
         String stringTimeScreen = txtTimeScreen.getText();
-        String stringTimeCode = txtTimeCode.getText();
+        String stringTimeCode = txtTimeCode.getText().replace(',','.');
 
         if(!stringTxtArea.isEmpty() && !stringTimeScreen.isEmpty() && !stringTimeCode.isEmpty() && controller.getVideoBean().getLenght() >= Double.parseDouble(stringTimeCode)){
             boolean ok = controller.newAnnotation(new Annotation(stringTxtArea,

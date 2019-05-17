@@ -38,7 +38,7 @@
                <children>
                   <Label prefHeight="60.0" prefWidth="472.0" text="Veuillez vous connectez : ">
                      <font>
-                        <Font name="Kunstler Script" size="46.0" />
+                        <Font name="Consolas" size="26.0" />
                      </font>
                   </Label>
                </children>
@@ -50,7 +50,7 @@
                         <Insets left="20.0" top="2.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="247.0" />
+                  <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="247.0" promptText="Votre email :" text="einstein@ldap.forumsys.com" />
                </children>
             </HBox>
          </children>

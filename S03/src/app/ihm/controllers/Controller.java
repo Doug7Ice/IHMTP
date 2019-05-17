@@ -136,7 +136,7 @@ public class Controller implements Initializable {
                 if (controllerAnnotations == null) {
                     controllerAnnotations = new ControllerAnnotations();
                     controllerAnnotations.controller = this;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/popupAnnotations.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/ihm/views/popupAnnotations.fxml"));
                     loader.setController(controllerAnnotations);
                     Scene scene = new Scene(loader.load(), 600, 400);
                     stagePopup = new Stage();
@@ -145,6 +145,7 @@ public class Controller implements Initializable {
                     controllerAnnotations.stage = stagePopup;
                 }
                 controllerAnnotations.txtTimeCode.setText(lblCurrentTime.getText());
+                setVideoState(false);
                 stagePopup.show();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -409,6 +410,16 @@ public class Controller implements Initializable {
     public void unableAnnotation() {
         menuAnnotation.setDisable(true);
         menuDelete.setDisable(true);
+    }
+
+    public void setVideoState(boolean play) {
+        if (play){
+            mediaPlayer.play();
+        }
+        else {
+            mediaPlayer.pause();
+        }
+
     }
 }
 
