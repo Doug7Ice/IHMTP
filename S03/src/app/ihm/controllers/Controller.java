@@ -326,6 +326,8 @@ public class Controller implements Initializable {
             mediaPlayer.stop();
         }
         stage.close();
+        stageLogin.close();
+        System.gc();
     }
 
     public void save() {
