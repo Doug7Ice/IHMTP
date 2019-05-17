@@ -81,14 +81,14 @@ public class Worker implements WorkerItf {
      * @return true if write correctly
      */
     public boolean writeAnnotations(ArrayList<Annotation> list) {
-        if (list != null && !list.isEmpty()) {
-
+        if (list != null && !list.isEmpty() || list.get(0).getText() != null) {
             String json = gson.toJson(list);
             System.out.println(json);
             return io.ecrireFichier(new ArrayList<String>() {{
                 add(json);
             }}, jsonLocation, list.get(0).getVideoName() + ".json");
         }else{
+
             return io.ecrireFichier(new ArrayList<String>() {{
                 add("");
             }}, jsonLocation, list.get(0).getVideoName() + ".json");
