@@ -30,7 +30,7 @@ import java.util.Date;
  *
  * @author Anthony Claude Florent Alonso Lopez
  * @version 1.0.0
- * 2.0.0 delete file
+ * 1.1.0 delete file, 17.05.2019
  * @since 16.11.2018 16:11
  */
 public class IoMaster {

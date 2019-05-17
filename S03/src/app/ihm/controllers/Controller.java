@@ -30,6 +30,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,7 +43,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
+import javafx.scene.shape.Line;
 
 /**
  * @author Anthony Alonso Lopez & Léo Doug Rey
@@ -190,8 +192,7 @@ public class Controller implements Initializable {
             Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
             if (popup.showAndWait().get() != ButtonType.OK) {
                 event.consume();
-            }
-            else {
+            } else {
                 this.quitter();
             }
         });
@@ -239,13 +240,12 @@ public class Controller implements Initializable {
                 if (videoBean != null || videoBean.getListAnnotations() != null || !videoBean.getListAnnotations().isEmpty()) {
                     for (Annotation annotation : videoBean.getListAnnotations()) {
                         if (annotation == null || videoBean == null || videoBean.getListAnnotations() == null || videoBean.getListAnnotations().isEmpty()) {
-                        break;
+                            break;
                         }
                         double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
                         if (delta < 0.5 && delta > -0.5) {
                             ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
                         }
-
                     }
                 }
             }
@@ -316,7 +316,15 @@ public class Controller implements Initializable {
             videoBean.setListAnnotations(wrk.readAnnotation(videoBean.getTitle()));
             listViewAnnotations.getItems().addAll(videoBean.getListAnnotations());
         }
+        Line redLine = new Line(10, 10, 200, 10);
+        System.out.println("saasdasdasd");
+        redLine.setStroke(Color.RED);
+        redLine.setStrokeWidth(10);
+        redLine.setStrokeLineCap(StrokeLineCap.BUTT);
 
+        redLine.getStrokeDashArray().addAll(15d, 5d, 15d, 15d, 20d);
+        redLine.setStrokeDashOffset(10);
+        stage.show();
     }
 
     /**
@@ -402,7 +410,7 @@ public class Controller implements Initializable {
 
     /**
      * Appelé lorsque le l'utilisateur clique sur Import...
-     * Ouvre 
+     * Ouvre
      * @param actionEvent
      */
     public void openFile(ActionEvent actionEvent) {

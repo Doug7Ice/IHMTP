@@ -120,8 +120,7 @@ public class ViewLib {
                     try {
                         Thread.sleep(((long) ms - 1000));
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+
                     }
                     Timeline fadeOutTimeline = new Timeline();
                     KeyFrame fadeOutKey1 = new KeyFrame(Duration.millis(1000), new KeyValue(toastStage.getScene().getRoot().opacityProperty(), 0));
