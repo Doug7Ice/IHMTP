@@ -117,7 +117,7 @@
           <contextMenu>
               <ContextMenu fx:id="ctxMenu">
                   <items>
-                      <MenuItem text="Remove"  onAction="#removeAnnotation" />
+                      <MenuItem fx:id="menuDelete" text="Remove"  onAction="#removeAnnotation" />
                   </items>
               </ContextMenu>
           </contextMenu>

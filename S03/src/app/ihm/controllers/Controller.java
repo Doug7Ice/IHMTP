@@ -173,7 +173,7 @@ public class Controller implements Initializable {
     private void launchPopupLogin() throws Exception{
         controllerLogin = new ControllerLogin();
         controllerLogin.mainCtrl = this;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/ihm/views/login.fxml"));
         loader.setController(controllerLogin);
         Scene scene = new Scene(loader.load(), 600, 400);
         stageLogin = new Stage();
