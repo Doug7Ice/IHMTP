@@ -176,7 +176,22 @@ public class Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/ihm/views/login.fxml"));
         loader.setController(controllerLogin);
         Scene scene = new Scene(loader.load(), 600, 400);
+
         stageLogin = new Stage();
+
+        //Quand
+        stageLogin.setOnCloseRequest(event -> {
+            stageLogin.setAlwaysOnTop(false);
+            Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
+            if (popup.showAndWait().get() != ButtonType.OK) {
+                event.consume();
+            }
+            else {
+                this.quitter();
+            }
+        });
+
+
         stageLogin.setTitle("Login");
         stageLogin.setScene(scene);
         stageLogin.setAlwaysOnTop(true);
