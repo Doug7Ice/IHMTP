@@ -271,21 +271,26 @@ public class Controller implements Initializable {
     }
 
     public void removeAnnotation(){
-        mediaPlayer.pause();
-        wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
-        ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
-        ArrayList<Annotation> arrayListAnnotation = new ArrayList<>();
-        arrayListAnnotation.addAll(arrayAnnotationTemp);
-        arrayListAnnotation.remove(listViewAnnotations.getSelectionModel().getSelectedItem());
-        wrk.writeAnnotations((arrayListAnnotation));
-        updateListView();
-        mediaPlayer.play();
+        if (listViewAnnotations.getItems().size() > 0){
+            mediaPlayer.pause();
+            wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
+            ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
+            ArrayList<Annotation> arrayListAnnotation = new ArrayList<>();
+            arrayListAnnotation.addAll(arrayAnnotationTemp);
+            arrayListAnnotation.remove(listViewAnnotations.getSelectionModel().getSelectedItem());
+            wrk.writeAnnotations((arrayListAnnotation));
+            updateListView();
+            mediaPlayer.play();
+        }
     }
 
     public void quitter() {
         System.out.println("app is closing !");
         if (controllerAnnotations != null) {
             controllerAnnotations.stage.close();
+        }
+        if (mediaPlayer!= null){
+            mediaPlayer.stop();
         }
         stage.close();
     }
