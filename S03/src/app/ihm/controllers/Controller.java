@@ -227,12 +227,14 @@ public class Controller implements Initializable {
                 sliderTime.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100.0);
                 if (videoBean != null || videoBean.getListAnnotations() != null || !videoBean.getListAnnotations().isEmpty()) {
                     for (Annotation annotation : videoBean.getListAnnotations()) {
-                        if (annotation != null) {
-                            double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
-                            if (delta < 0.5 && delta > -0.5) {
-                                ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
-                            }
+                        if (annotation == null || videoBean == null || videoBean.getListAnnotations() == null || videoBean.getListAnnotations().isEmpty()) {
+                        break;
                         }
+                        double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
+                        if (delta < 0.5 && delta > -0.5) {
+                            ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
+                        }
+
                     }
                 }
             }
@@ -302,10 +304,9 @@ public class Controller implements Initializable {
             arrayListAnnotation.addAll(arrayAnnotationTemp);
             arrayListAnnotation.remove(listViewAnnotations.getSelectionModel().getSelectedItem());
 
-            if (!arrayListAnnotation.isEmpty()){
+            if (!arrayListAnnotation.isEmpty()) {
                 wrk.writeAnnotations((arrayListAnnotation));
-            }
-            else {
+            } else {
                 arrayListAnnotation.add(new Annotation(videoBean.getTitle()));
                 wrk.writeAnnotations((arrayListAnnotation));
             }
@@ -321,7 +322,7 @@ public class Controller implements Initializable {
         if (controllerAnnotations != null) {
             controllerAnnotations.stage.close();
         }
-        if (mediaPlayer!= null){
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
         stage.close();
