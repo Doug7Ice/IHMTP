@@ -156,8 +156,7 @@ public class Controller implements Initializable {
         //Affiche une page de login;
         try {
             launchPopupLogin();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -171,7 +170,7 @@ public class Controller implements Initializable {
         stageLogin.close();
     }
 
-    private void launchPopupLogin() throws Exception{
+    private void launchPopupLogin() throws Exception {
         controllerLogin = new ControllerLogin();
         controllerLogin.mainCtrl = this;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/ihm/views/login.fxml"));
@@ -196,20 +195,20 @@ public class Controller implements Initializable {
     protected void updateValues() {
 
         Platform.runLater(() -> {
-
-
             Duration currentTime = mediaPlayer.getCurrentTime();
             String txt = String.format("%.2f", currentTime.toSeconds());
             lblCurrentTime.setText(txt);
             sliderTime.setDisable(currentTime.isUnknown());
             if (!sliderTime.isDisabled() && duration.greaterThan(Duration.ZERO) && !sliderTime.isValueChanging()) {
                 sliderTime.setValue(currentTime.divide(duration.toMillis()).toMillis() * 100.0);
-                int indexAnnotationRunning = 0;
-                for (Annotation annotation : videoBean.getListAnnotations()) {
-                    indexAnnotationRunning++;
-                    double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
-                    if (delta < 0.5 && delta > -0.5) {
-                        ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
+                if (videoBean != null || videoBean.getListAnnotations() != null || !videoBean.getListAnnotations().isEmpty()) {
+                    for (Annotation annotation : videoBean.getListAnnotations()) {
+                        if (annotation != null) {
+                            double delta = currentTime.toSeconds() - annotation.getTimestampMillis();
+                            if (delta < 0.5 && delta > -0.5) {
+                                ViewLib.toast(stage, annotation.getText(), annotation.getDuration());
+                            }
+                        }
                     }
                 }
             }
@@ -263,7 +262,7 @@ public class Controller implements Initializable {
 
     private void updateListView() {
         listViewAnnotations.getItems().clear();
-        if(videoBean!= null && videoBean.getListAnnotations()!= null){
+        if (videoBean != null && videoBean.getListAnnotations() != null) {
             videoBean.setListAnnotations(wrk.readAnnotation(videoBean.getTitle()));
             listViewAnnotations.getItems().addAll(videoBean.getListAnnotations());
         }
@@ -344,6 +343,7 @@ public class Controller implements Initializable {
             }
         }
     }
+
     public void openURL(String selectedFile) {
         if (selectedFile != null) {
             try {
@@ -390,7 +390,7 @@ public class Controller implements Initializable {
         if (db.hasFiles()) {
             openFile(db.getFiles().get(0));
             success = true;
-        }else if (db.hasString()){
+        } else if (db.hasString()) {
             openURL(db.getString());
             success = true;
         }
@@ -403,7 +403,7 @@ public class Controller implements Initializable {
         Dragboard db = dragEvent.getDragboard();
         if (db.hasFiles()) {
             dragEvent.acceptTransferModes(TransferMode.MOVE);
-        }else if (db.hasString()){
+        } else if (db.hasString()) {
             dragEvent.acceptTransferModes(TransferMode.MOVE);
         }
         dragEvent.consume();
@@ -419,13 +419,11 @@ public class Controller implements Initializable {
     }
 
     public void setVideoState(boolean play) {
-        if (play){
+        if (play) {
             mediaPlayer.play();
-        }
-        else {
+        } else {
             mediaPlayer.pause();
         }
 
     }
 }
-

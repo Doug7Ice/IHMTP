@@ -8,4 +8,5 @@ open module S03 {
     requires javafx.swing;
     requires java.naming;
     requires java.sql;
+    requires gson;
 }
