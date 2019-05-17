@@ -7,10 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 /**
  * @author Léo Doug Rey
@@ -33,12 +36,16 @@ public class ControllerAnnotations implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txtTimeScreen.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue,
-                                                  String newValue) -> {
-            if (!newValue.matches("([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|100000)")); {
-                txtTimeScreen.clear();
+        UnaryOperator<TextFormatter.Change> integerFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("-?([1-9][0-9]*)?")) {
+                return change;
             }
-        });
+            return null;
+        };
+
+        txtTimeScreen.setTextFormatter(
+                new TextFormatter<Integer>(new IntegerStringConverter(), 5000, integerFilter));
     }
 
     public void closePopup(){

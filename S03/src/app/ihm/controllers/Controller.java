@@ -264,6 +264,7 @@ public class Controller implements Initializable {
     private void updateListView() {
         listViewAnnotations.getItems().clear();
         if(videoBean!= null && videoBean.getListAnnotations()!= null){
+            videoBean.setListAnnotations(wrk.readAnnotation(videoBean.getTitle()));
             listViewAnnotations.getItems().addAll(videoBean.getListAnnotations());
         }
 
