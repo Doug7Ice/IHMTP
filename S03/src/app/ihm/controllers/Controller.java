@@ -269,8 +269,8 @@ public class Controller implements Initializable {
 
     }
 
-    public void removeAnnotation() {
-        if (!listViewAnnotations.getItems().isEmpty()) {
+    public void removeAnnotation(){
+        if (listViewAnnotations.getItems().size() > 0){
             mediaPlayer.pause();
             wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
             ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
@@ -287,6 +287,9 @@ public class Controller implements Initializable {
         System.out.println("app is closing !");
         if (controllerAnnotations != null) {
             controllerAnnotations.stage.close();
+        }
+        if (mediaPlayer!= null){
+            mediaPlayer.stop();
         }
         stage.close();
     }
@@ -424,4 +427,3 @@ public class Controller implements Initializable {
 
     }
 }
-
