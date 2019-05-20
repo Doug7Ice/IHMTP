@@ -266,7 +266,6 @@ public class Controller implements Initializable {
     }
 
     private void intiTestVideo() {
-
         try {
             isBeingPlayed = true;
             File video = new File("src/ressources/test.mp4").getCanonicalFile();
@@ -317,8 +316,6 @@ public class Controller implements Initializable {
                 arrayListAnnotation.add(new Annotation(videoBean.getTitle()));
                 wrk.writeAnnotations((arrayListAnnotation));
             }
-
-
             updateListView();
             setVideoState(true);
         }
@@ -338,7 +335,7 @@ public class Controller implements Initializable {
     }
 
     public void save() {
-        System.out.println("Heu... Hehe c'est embarrassant.........");
+        System.out.println("Non inutilisé");
     }
 
     public void setFullscreen() {
