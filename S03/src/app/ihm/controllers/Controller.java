@@ -173,15 +173,12 @@ public class Controller implements Initializable {
 
     }
 
-    public void launchProfIHM() {
-        intiTestVideo();
-        initFileChooser();
-        setListenerMediaPlayer();
-        updateLblTotalDuration();
-        stageLogin.close();
-    }
-
-    private void launchPopupLogin() throws Exception {
+    /**
+     * Lance une fenêtre pour demander à l'utilisateur de se connecter.
+     * Cette fenêtre reste au dessus des autres stages afin de forcer l'user a se connecter.
+     * @throws IOException typiquement si le fxml n'est pas accessible.
+     */
+    private void launchPopupLogin() throws IOException {
         controllerLogin = new ControllerLogin();
         controllerLogin.mainCtrl = this;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/ihm/views/login.fxml"));
@@ -190,7 +187,6 @@ public class Controller implements Initializable {
 
         stageLogin = new Stage();
 
-        //Quand
         stageLogin.setOnCloseRequest(event -> {
             stageLogin.setAlwaysOnTop(false);
             Alert popup = ViewLib.displayPopupConfirm("Fermer l'application", null, "Êtes-vous sûr de vouloir fermer l'application ?");
@@ -200,15 +196,27 @@ public class Controller implements Initializable {
                 this.quitter();
             }
         });
-
-
         stageLogin.setTitle("Login");
         stageLogin.setScene(scene);
+        //Bloque la fenêtre au dessus
         stageLogin.setAlwaysOnTop(true);
         stageLogin.show();
     }
 
+    /**
+     * /Prépare les composants une fois que le login est validé et ferme le popup de login
+     */
+    public void launchProfIHM() {
+        intiTestVideo();
+        initFileChooser();
+        setListenerMediaPlayer();
+        updateLblTotalDuration();
+        stageLogin.close();
+    }
 
+    /**
+     * Initialise le FileChooser permettant de sélectionner un autre fichier .mp4
+     */
     private void initFileChooser() {
         fileChooser = new FileChooser();
         fileChooser.setTitle("FileChooserExample");
@@ -217,6 +225,10 @@ public class Controller implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("VideoBean Files", "*.mp4"));
     }
 
+    /**
+     * Lance un thread permettant de mettre à jour le slider de temps selon l'avancement deans la vidéo
+     * Fais de même pour le slider du volume avec le volume du media
+     */
     protected void updateValues() {
         Platform.runLater(() -> {
             Duration currentTime = mediaPlayer.getCurrentTime();
@@ -243,6 +255,9 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * Change l'image du bouton pause selon la valeur du boolean isBeingPlayed.
+     */
     private void changeStyleButtonPlayPause() {
         if (isBeingPlayed) {
             playBtn.setStyle("-fx-background-image: url(ressources/images/pause-solid.png);-fx-background-repeat: no-repeat;-fx-background-size: contain; -fx-background-position : center center;");
@@ -252,6 +267,10 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Met a jour le label lblTime avec la durée de la vidéo
+     * Met a jour également le temps du videoBean.
+     */
     private void updateLblTotalDuration() {
         mediaPlayer.setOnReady(new Runnable() {
             @Override
@@ -265,6 +284,9 @@ public class Controller implements Initializable {
         });
     }
 
+    /**
+     * Démarre un petit test vidéo
+     */
     private void intiTestVideo() {
         try {
             isBeingPlayed = true;
@@ -284,6 +306,9 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Met a jour la listView avec les annotations correspondantes à la vidéo actuelle
+     */
     private void updateListView() {
         listViewAnnotations.getItems().clear();
         if (videoBean != null && videoBean.getListAnnotations() != null) {
@@ -301,8 +326,15 @@ public class Controller implements Initializable {
         stage.show();
     }
 
-    public void removeAnnotation() {
-        if (listViewAnnotations.getItems().size() > 0) {
+    /**
+     * Cette méthode supprime une annotation. Elle recupère le nom de la vidéo de l'annotation sélectionnée et demande
+     * au Worker de supprimer TOUTES les annotations de cette vidéo. Après quoi cette méthode va créer une ArrayList contenant
+     * toutes les annotations sauf celle qui vient d'être supprimée et la passe au Worker afin que celui recrée
+     * un Json avec cette ArrayList. Dans le cas ou c'était la dernière listView, l'arrayList ne contient qu'une seule
+     * ayant une seule annotation contenant uniquement le nom de la vidéo.
+     */
+    public void removeAnnotation(){
+        if (listViewAnnotations.getItems().size() > 0){
             setVideoState(false);
             wrk.eraseAnnotation(listViewAnnotations.getSelectionModel().getSelectedItem().getVideoName());
             ObservableList<Annotation> arrayAnnotationTemp = listViewAnnotations.getItems();
@@ -321,6 +353,10 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Cette méthode est appelée lorsque l'application est quittée. Elle veille a ce que tout les stages soient fermés,
+     * ce qui permet de fermer l'app de façon gracieuse.
+     */
     public void quitter() {
         System.out.println("app is closing !");
         if (controllerAnnotations != null) {
@@ -334,14 +370,26 @@ public class Controller implements Initializable {
         System.gc();
     }
 
+    /**
+     *Nous n'avons pas utilisé le save car nous sauvegardons les annotations dans le json des quelles sont crées ou supprimés
+     */
     public void save() {
         System.out.println("Non inutilisé");
     }
 
+    /**
+     * Cette méthode met l'app en plein écran
+     */
     public void setFullscreen() {
         stage.setFullScreen(true);
     }
 
+    /**
+     * Cette méthode est appelé lorsque l'user appuye sur le bouton play/pause
+     * Si la vidéo est en cours de lecture, elle est mis en pause.
+     * Si la vidéo est en pause, elle continue sa lecture.
+     * Si la vidéo est terminée, elle revient au début et recommence la lecture.
+     */
     public void resume() {
         Duration tempActuel = mediaPlayer.getCurrentTime();
         Duration tempTotal = mediaPlayer.getTotalDuration();
@@ -357,6 +405,11 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Appelé lorsque le l'utilisateur clique sur Import...
+     * Ouvre
+     * @param actionEvent
+     */
     public void openFile(ActionEvent actionEvent) {
         setVideoState(false);
         openFile(fileChooser.showOpenDialog(stage));
